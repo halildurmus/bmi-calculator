@@ -6,7 +6,9 @@ import 'package:flutter/painting.dart';
 class BmiCalculator {
   BmiCalculator({this.height, this.weight}) {
     _bmi = weight / pow(height / 100, 2);
+
     stringWithDecimal = _bmi.floor().toString();
+
     final String doubleAsString = _bmi.toStringAsFixed(2);
     final int indexOfDecimal = doubleAsString.indexOf('.');
     final String stringWithoutDecimal =
@@ -31,17 +33,17 @@ class BmiCalculator {
     } else if (_bmi > 18.5) {
       return const Color(0xFF66BB6A);
     } else {
-      return Colors.amber;
+      return Colors.orange;
     }
   }
 
   String get getInterpretation {
     if (_bmi >= 25) {
-      return 'You have a higher than normal body weight. \nTry to exercise more.';
+      return 'You have a higher than normal body weight. Try to exercise more.';
     } else if (_bmi >= 18.5) {
       return 'You have a normal body weight. Great job!';
     } else {
-      return 'You have a lower than normal body weight. \nYou can eat a bit more.';
+      return 'You have a lower than normal body weight. You can eat a bit more.';
     }
   }
 }

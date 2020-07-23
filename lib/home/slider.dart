@@ -122,10 +122,10 @@ class _CustomSliderState extends State<CustomSlider> {
         thumbColor: Colors.white,
         overlayColor: Colors.white.withOpacity(0.2),
         thumbShape: _CustomSliderThumbCircle(
-          thumbRadius: 20.0,
+          thumbRadius: 16.0,
           min: widget.min,
           max: widget.max,
-        ), //const RoundSliderThumbShape(enabledThumbRadius: 14.0),
+        ),
       ),
       child: Slider(
         value: widget.value.toDouble(),

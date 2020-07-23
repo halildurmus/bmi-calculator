@@ -29,13 +29,15 @@ class GenderToggleButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Icon(icon, color: textColor),
-              const SizedBox(width: 8.0),
-              Text(
-                text,
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w500,
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],
