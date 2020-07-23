@@ -6,6 +6,7 @@ import 'package:bmicalculator/gender_toggle_button.dart';
 import 'package:bmicalculator/models/gender.dart';
 import 'package:bmicalculator/slider.dart';
 import 'package:bmicalculator/constants.dart';
+import 'package:bmicalculator/utils/bmi_calculator.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   Gender _selectedGender = Gender.Male;
   int height = 170;
   int weight = 65;
+  bool showResult = false;
 
   Widget _buildGenderToggleButtons({String title, Gender gender}) {
     return GenderToggleButton(
@@ -44,16 +46,139 @@ class _HomePageState extends State<HomePage> {
       icon: gender == Gender.Male
           ? FontAwesomeIcons.mars
           : FontAwesomeIcons.venus,
-      onTap: () {
-        setState(() {
-          _selectedGender = gender;
-        });
-      },
+      onTap: !showResult
+          ? () {
+              setState(() {
+                _selectedGender = gender;
+              });
+            }
+          : null,
       text: title,
       textColor: _selectedGender == gender
           ? kActiveButtonTextColor
           : kInactiveButtonTextColor,
     );
+  }
+
+  Widget _buildBottomStackContent() {
+    if (!showResult) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 155.0, bottom: 32.0),
+        child: Center(
+          child: Column(
+            children: <Text>[
+              Text(
+                'Body mass index, or BMI, is used to determine whether\n you are in a healthy weight range for your height.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black54.withOpacity(0.4),
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const Text(
+                "\n* This calculator shouldn't be used for pregnant women or children.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 11.5,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      final BmiCalculator _bmiResult =
+          BmiCalculator(height: height, weight: weight);
+
+      return Padding(
+        padding: const EdgeInsets.only(
+          top: 135.0,
+          bottom: 0.0,
+          left: 24,
+          right: 24,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'YOUR BMI',
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(0.55),
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                Row(
+                  children: const <Widget>[
+                    Text(
+                      'The BMI Tables',
+                      style: TextStyle(
+                        color: Color(0xFFCA4F5D),
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 4.0),
+                      child: Icon(
+                        Icons.trending_flat,
+                        color: Color(0xFFCA4F5D),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              textBaseline: TextBaseline.alphabetic,
+              children: <Widget>[
+                Text(
+                  _bmiResult.getDecimal,
+                  style: const TextStyle(
+                    color: Color(0xFFCA4F5D),
+                    fontSize: 48.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: Text(
+                    _bmiResult.getDigit,
+                    style: const TextStyle(
+                      color: Color(0xFFCA4F5D),
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0.0),
+              child: Center(
+                child: Text(
+                  _bmiResult.getInterpretation,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: _bmiResult.getInterpretationColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -106,12 +231,16 @@ class _HomePageState extends State<HomePage> {
                         children: <Widget>[
                           Expanded(
                             child: _buildGenderToggleButtons(
-                                title: 'Male', gender: Gender.Male),
+                              title: 'Male',
+                              gender: Gender.Male,
+                            ),
                           ),
                           const SizedBox(width: 16.0),
                           Expanded(
                             child: _buildGenderToggleButtons(
-                                title: 'Female', gender: Gender.Female),
+                              title: 'Female',
+                              gender: Gender.Female,
+                            ),
                           ),
                         ],
                       ),
@@ -134,11 +263,13 @@ class _HomePageState extends State<HomePage> {
                         max: 220,
                         measurementUnit: 'cm',
                         value: height,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            height = newValue.round();
-                          });
-                        },
+                        onChanged: !showResult
+                            ? (double newValue) {
+                                setState(() {
+                                  height = newValue.round();
+                                });
+                              }
+                            : null,
                       ),
                     ),
                     const SizedBox(height: 10.0),
@@ -159,11 +290,13 @@ class _HomePageState extends State<HomePage> {
                         max: 120,
                         measurementUnit: 'kg',
                         value: weight,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            weight = newValue.round();
-                          });
-                        },
+                        onChanged: !showResult
+                            ? (double newValue) {
+                                setState(() {
+                                  weight = newValue.round();
+                                });
+                              }
+                            : null,
                       ),
                     ),
                   ],
@@ -194,6 +327,7 @@ class _HomePageState extends State<HomePage> {
                     painter: CurvePainter(color: Colors.white, pathNo: 1),
                   ),
                 ),
+                _buildBottomStackContent(),
                 Padding(
                   padding: EdgeInsets.only(
                     right: MediaQuery.of(context).size.width / 15.0,
@@ -214,12 +348,16 @@ class _HomePageState extends State<HomePage> {
                       //highlightColor: const Color(0xFFCA4F5D),
                       color: Colors.white,
                       elevation: 0.0,
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          showResult = !showResult;
+                        });
+                      },
                       padding: const EdgeInsets.all(24.0),
                       shape: const CircleBorder(),
-                      child: const Icon(
-                        Icons.trending_flat,
-                        color: Color(0xFFCA4F5D),
+                      child: Icon(
+                        !showResult ? Icons.trending_flat : Icons.refresh,
+                        color: const Color(0xFFCA4F5D),
                         size: 48.0,
                       ),
                     ),
