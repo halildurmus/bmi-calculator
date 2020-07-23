@@ -87,12 +87,14 @@ class CustomSlider extends StatefulWidget {
   const CustomSlider({
     @required this.min,
     @required this.max,
+    @required this.measurementUnit,
     @required this.onChanged,
     @required this.value,
   });
 
   final double min;
   final double max;
+  final String measurementUnit;
   final int value;
   final ValueChanged<double> onChanged;
 
@@ -129,7 +131,7 @@ class _CustomSliderState extends State<CustomSlider> {
         value: widget.value.toDouble(),
         min: widget.min,
         max: widget.max,
-        label: '${widget.value.toString()} kg',
+        label: '${widget.value.toString()} ${widget.measurementUnit}',
         onChanged: widget.onChanged,
       ),
     );

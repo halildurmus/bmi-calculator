@@ -65,7 +65,8 @@ class _HomePageState extends State<HomePage> {
           widget.title,
           style: const TextStyle(
             color: Color(0xFFCA4F5D),
-            fontWeight: FontWeight.bold,
+            fontSize: 22.0,
+            fontWeight: FontWeight.w900,
           ),
         ),
       ),
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     const Padding(
                       padding: EdgeInsets.only(
-                        top: 15.0,
+                        top: 20.0,
                       ),
                       child: Text(
                         'GENDER',
@@ -115,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20.0),
+                    const SizedBox(height: 10.0),
                     const Text(
                       'HEIGHT',
                       style: TextStyle(
@@ -131,6 +132,7 @@ class _HomePageState extends State<HomePage> {
                       child: CustomSlider(
                         min: 120,
                         max: 220,
+                        measurementUnit: 'cm',
                         value: height,
                         onChanged: (double newValue) {
                           setState(() {
@@ -139,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 20.0),
+                    const SizedBox(height: 10.0),
                     const Text(
                       'WEIGHT',
                       style: TextStyle(
@@ -155,6 +157,7 @@ class _HomePageState extends State<HomePage> {
                       child: CustomSlider(
                         min: 40,
                         max: 120,
+                        measurementUnit: 'kg',
                         value: weight,
                         onChanged: (double newValue) {
                           setState(() {
@@ -167,9 +170,118 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            Stack(
+              alignment: Alignment.topRight,
+              children: <Widget>[
+                Container(
+                  height: 190.0,
+                  width: double.infinity,
+                  child: const CustomPaint(
+                    painter: CurvePainter(color: Color(0xFFEE7583), pathNo: 3),
+                  ),
+                ),
+                Container(
+                  height: 220.0,
+                  width: double.infinity,
+                  child: const CustomPaint(
+                    painter: CurvePainter(color: Color(0xFFF6ABB2), pathNo: 2),
+                  ),
+                ),
+                Container(
+                  height: 260.0,
+                  width: double.infinity,
+                  child: const CustomPaint(
+                    painter: CurvePainter(color: Colors.white, pathNo: 1),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width / 15.0,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: const Color(0xFFCA4F5D).withOpacity(0.4),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: RaisedButton(
+                      splashColor: const Color(0xFFCA4F5D),
+                      //highlightColor: const Color(0xFFCA4F5D),
+                      color: Colors.white,
+                      elevation: 0.0,
+                      onPressed: () {},
+                      padding: const EdgeInsets.all(24.0),
+                      shape: const CircleBorder(),
+                      child: const Icon(
+                        Icons.trending_flat,
+                        color: Color(0xFFCA4F5D),
+                        size: 48.0,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+class CurvePainter extends CustomPainter {
+  const CurvePainter({@required this.color, @required this.pathNo});
+
+  final Color color;
+  final int pathNo;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint();
+    paint.color = color;
+    paint.style = PaintingStyle.fill;
+
+    final Path path1 = Path();
+    path1.moveTo(0, size.height * .35);
+    path1.cubicTo(size.width * .25, size.height * .7, size.width * .75, 10,
+        size.width, size.height * .33);
+    path1.lineTo(size.width, size.height);
+    path1.lineTo(0, size.height);
+
+    final Path path2 = Path();
+    path2.moveTo(0, size.height * .35);
+    path2.cubicTo(size.width * .25, size.height * .75, size.width * .95, -15,
+        size.width, size.height * .5);
+    path2.lineTo(size.width, size.height);
+    path2.lineTo(0, size.height);
+
+    final Path path3 = Path();
+    path3.moveTo(0, size.height * .35);
+    path3.cubicTo(size.width * .25, size.height * .85, size.width * .75, -10,
+        size.width, size.height * .25);
+    path3.lineTo(size.width, size.height);
+    path3.lineTo(0, size.height);
+
+    switch (pathNo) {
+      case 1:
+        canvas.drawPath(path1, paint);
+        break;
+      case 2:
+        canvas.drawPath(path2, paint);
+        break;
+      case 3:
+        canvas.drawPath(path3, paint);
+        break;
+      default:
+        canvas.drawPath(path1, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
