@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'file:///C:/Users/root/FlutterProjects/bmi_calculator/lib/home/home_screen.dart';
+import 'package:bmicalculator/home/home_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,12 +11,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BMI Calculator',
       theme: ThemeData(
-        bottomSheetTheme: BottomSheetThemeData(
-          backgroundColor: Colors.black.withOpacity(0),
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.transparent,
         ),
         primarySwatch: Colors.red,
       ),
-      home: const HomeScreen(title: 'BMI Calculator'),
+      home: const SafeArea(child: HomeScreen(title: 'BMI Calculator')),
     );
   }
 }

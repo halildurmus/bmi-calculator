@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:bmicalculator/constants.dart';
+import 'package:bmicalculator/home/bmi_chart.dart';
 import 'package:bmicalculator/utils/bmi_calculator.dart';
 
 class BmiResultWidget extends StatelessWidget {
@@ -34,12 +34,15 @@ class BmiResultWidget extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) => BmiChart(),
+                    );
                   },
                   child: Row(
                     children: const <Widget>[
                       Text(
-                        'The BMI Tables',
+                        'The BMI Chart',
                         style: TextStyle(
                           color: kPrimaryColor,
                           fontSize: 12.0,
@@ -83,7 +86,7 @@ class BmiResultWidget extends StatelessWidget {
             ],
           ),
           Container(
-            height: 40.0,
+            height: 30.0,
             child: Center(
               child: Text(
                 bmiResult.getInterpretation,
