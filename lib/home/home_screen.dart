@@ -12,8 +12,7 @@ import 'package:bmicalculator/models/gender.dart';
 import 'package:bmicalculator/utils/bmi_calculator.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key, this.title}) : super(key: key);
-  final String title;
+  const HomeScreen({Key key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -23,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Gender _selectedGender = Gender.Male;
   int height = 170;
   int weight = 65;
+  // Used displaying appropriate content depending on the user's actions.
   bool showResult = false;
 
   Widget _buildGenderToggleButtons({String title, Gender gender}) {
@@ -63,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
-          widget.title,
+        title: const Text(
+          'BMI Calculator',
           style: kAppBarTextStyle,
         ),
       ),
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width / 13.0,
+                  horizontal: MediaQuery.of(context).size.width / 12.0,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 16,
+                        top: 16.0,
                         bottom: 16.0,
                       ),
                       child: Row(
@@ -118,22 +118,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 10.0),
-                    const Text(
-                      'HEIGHT',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        'HEIGHT',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 40,
+                        top: 40.0,
                         bottom: 16.0,
                       ),
                       child: CustomSlider(
-                        min: 120,
-                        max: 220,
+                        min: 120.0,
+                        max: 220.0,
                         measurementUnit: 'cm',
                         value: height,
                         onChanged: !showResult
@@ -145,22 +147,24 @@ class _HomeScreenState extends State<HomeScreen> {
                             : null,
                       ),
                     ),
-                    const SizedBox(height: 10.0),
-                    const Text(
-                      'WEIGHT',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        'WEIGHT',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 40,
+                        top: 40.0,
                         bottom: 16.0,
                       ),
                       child: CustomSlider(
-                        min: 40,
-                        max: 120,
+                        min: 40.0,
+                        max: 120.0,
                         measurementUnit: 'kg',
                         value: weight,
                         onChanged: !showResult
@@ -203,16 +207,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 _buildBottomStackContent(),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width / 15.0,
+                    right: MediaQuery.of(context).size.width / 12.0,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       boxShadow: <BoxShadow>[
                         BoxShadow(
-                          color: kPrimaryColor.withOpacity(0.4),
-                          blurRadius: 6,
-                          offset: const Offset(0, 2),
+                          color: kPrimaryColor.withOpacity(.4),
+                          blurRadius: 6.0,
+                          offset: const Offset(0.0, 2.0),
                         ),
                       ],
                     ),

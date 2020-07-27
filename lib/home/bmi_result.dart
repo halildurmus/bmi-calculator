@@ -15,8 +15,8 @@ class BmiResultWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         top: 135.0,
         bottom: 0.0,
-        left: 24,
-        right: 24,
+        left: 24.0,
+        right: 24.0,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +27,7 @@ class BmiResultWidget extends StatelessWidget {
               Text(
                 'YOUR BMI',
                 style: TextStyle(
-                  color: Colors.black.withOpacity(0.55),
+                  color: Colors.black.withOpacity(.55),
                   fontSize: 13.0,
                   fontWeight: FontWeight.w900,
                 ),
@@ -65,7 +65,7 @@ class BmiResultWidget extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: <Widget>[
               Text(
-                bmiResult.getDecimal,
+                bmiResult.getIntegerPart,
                 style: const TextStyle(
                   color: kPrimaryColor,
                   fontSize: 48.0,
@@ -75,7 +75,7 @@ class BmiResultWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  bmiResult.getDigit,
+                  bmiResult.getDecimalPart,
                   style: const TextStyle(
                     color: kPrimaryColor,
                     fontSize: 28.0,

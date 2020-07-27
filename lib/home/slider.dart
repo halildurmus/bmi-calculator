@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bmicalculator/constants.dart';
 
+// Displays the slider value inside the thumb shape by overriding paint().
 class _CustomSliderThumbCircle extends SliderComponentShape {
   const _CustomSliderThumbCircle({
     @required this.thumbRadius,
@@ -65,6 +66,7 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
   }
 }
 
+// Removes extra padding around the track by overriding getPreferredRect().
 class _CustomTrackShape extends RoundedRectSliderTrackShape {
   @override
   Rect getPreferredRect({

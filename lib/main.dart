@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.red,
       ),
-      home: const SafeArea(child: HomeScreen(title: 'BMI Calculator')),
+      home: const HomeScreen(),
     );
   }
 }

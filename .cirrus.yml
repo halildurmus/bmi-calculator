@@ -1,0 +1,17 @@
+container:
+  image: cirrusci/flutter:master
+test_task:
+  pub_cache:
+    folder: ~/.pub-cache
+  test_script: flutter test
+
+
+build_task:
+  pub_cache:
+    folder: ~/.pub-cache
+  script:
+    - flutter build apk
+  artifacts:
+    paths:
+      - build/app/outputs/apk/release/app-release.apk
+

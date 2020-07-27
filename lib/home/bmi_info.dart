@@ -12,7 +12,7 @@ class BmiInfoWidget extends StatelessWidget {
               'Body mass index, or BMI, is used to determine whether\n you are in a healthy weight range for your height.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.black54.withOpacity(0.4),
+                color: Colors.black54.withOpacity(.4),
                 fontSize: 14.0,
                 fontWeight: FontWeight.w700,
               ),

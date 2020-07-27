@@ -7,14 +7,14 @@ class BmiChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(24.0),
           topRight: Radius.circular(24.0),
         ),
         child: Container(
-          height: 400,
+          height: 400.0,
           color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
