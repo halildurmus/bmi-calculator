@@ -1,3 +1,4 @@
+import 'package:bmicalculator/my_localizations.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bmicalculator/constants.dart';
@@ -25,7 +26,7 @@ class BmiResultWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                'YOUR BMI',
+                MyLocalizations.of(context).yourBmi,
                 style: TextStyle(
                   color: Colors.black.withOpacity(.55),
                   fontSize: 13.0,
@@ -40,16 +41,16 @@ class BmiResultWidget extends StatelessWidget {
                     );
                   },
                   child: Row(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Text(
-                        'The BMI Chart',
-                        style: TextStyle(
+                        MyLocalizations.of(context).theBmiChart,
+                        style: const TextStyle(
                           color: kPrimaryColor,
                           fontSize: 12.0,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(left: 4.0),
                         child: Icon(
                           Icons.expand_less,
@@ -86,10 +87,10 @@ class BmiResultWidget extends StatelessWidget {
             ],
           ),
           Container(
-            height: 30.0,
+            height: 35.0,
             child: Center(
               child: Text(
-                bmiResult.getInterpretation,
+                bmiResult.getInterpretation(context),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: bmiResult.getInterpretationColor,

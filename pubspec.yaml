@@ -21,7 +21,7 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   test: any
-  intl_translation: ^0.17.10
+  intl_translation: ^0.17.8
 
 
 flutter:

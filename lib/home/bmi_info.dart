@@ -1,3 +1,4 @@
+import 'package:bmicalculator/my_localizations.dart';
 import 'package:flutter/material.dart';
 
 class BmiInfoWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class BmiInfoWidget extends StatelessWidget {
         child: Column(
           children: <Text>[
             Text(
-              'Body mass index, or BMI, is used to determine whether\n you are in a healthy weight range for your height.',
+              MyLocalizations.of(context).bmiInfoFirst,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black54.withOpacity(.4),
@@ -17,10 +18,10 @@ class BmiInfoWidget extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const Text(
-              "\n* This calculator shouldn't be used for pregnant women or children.",
+            Text(
+              MyLocalizations.of(context).bmiInfoSecond,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.grey,
                 fontSize: 11.5,
                 fontStyle: FontStyle.italic,

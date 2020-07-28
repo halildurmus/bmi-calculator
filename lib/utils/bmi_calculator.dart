@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bmicalculator/my_localizations.dart';
 import 'package:flutter/material.dart';
 
 class BmiCalculator {
@@ -40,13 +41,13 @@ class BmiCalculator {
   }
 
   /// Returns interpretation text based on the calculated BMI.
-  String get getInterpretation {
+  String getInterpretation(BuildContext context) {
     if (getBmi >= 25) {
-      return 'You have a higher than normal body weight. Try to exercise more.';
+      return MyLocalizations.of(context).bmiInterpretationOverweight;
     } else if (getBmi >= 18.5) {
-      return 'You have a normal body weight. Great job!';
+      return MyLocalizations.of(context).bmiInterpretationNormal;
     } else {
-      return 'You have a lower than normal body weight. You can eat a bit more.';
+      return MyLocalizations.of(context).bmiInterpretationUnderweight;
     }
   }
 

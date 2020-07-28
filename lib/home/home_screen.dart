@@ -1,3 +1,4 @@
+import 'package:bmicalculator/my_localizations.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -63,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
-          'BMI Calculator',
+        title: Text(
+          MyLocalizations.of(context).title,
           style: kAppBarTextStyle,
         ),
       ),
@@ -82,13 +83,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(
+                    Padding(
+                      padding: const EdgeInsets.only(
                         top: 20.0,
                       ),
                       child: Text(
-                        'GENDER',
-                        style: TextStyle(
+                        MyLocalizations.of(context).gender,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -104,25 +105,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Expanded(
                             child: _buildGenderToggleButtons(
-                              title: 'Male',
+                              title: MyLocalizations.of(context).male,
                               gender: Gender.Male,
                             ),
                           ),
                           const SizedBox(width: 16.0),
                           Expanded(
                             child: _buildGenderToggleButtons(
-                              title: 'Female',
+                              title: MyLocalizations.of(context).female,
                               gender: Gender.Female,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Text(
-                        'HEIGHT',
-                        style: TextStyle(
+                        MyLocalizations.of(context).height,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -147,11 +148,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             : null,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Text(
-                        'WEIGHT',
-                        style: TextStyle(
+                        MyLocalizations.of(context).weight,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),

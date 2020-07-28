@@ -1,6 +1,7 @@
 import 'dart:ui' show ImageFilter;
 
 import 'package:bmicalculator/constants.dart';
+import 'package:bmicalculator/my_localizations.dart';
 import 'package:flutter/material.dart';
 
 class BmiChart extends StatelessWidget {
@@ -34,9 +35,9 @@ class BmiChart extends StatelessWidget {
                 FlatButton(
                   onPressed: () => Navigator.pop(context),
                   textColor: kPrimaryColor,
-                  child: const Text(
-                    'Close',
-                    style: TextStyle(
+                  child: Text(
+                    MyLocalizations.of(context).close,
+                    style: const TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                     ),
