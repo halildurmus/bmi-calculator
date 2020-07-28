@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildGenderToggleButtons({String title, Gender gender}) {
     return GenderToggleButton(
+      valueKey: ValueKey<String>('$gender'),
       bgColor: _selectedGender == gender
           ? kActiveButtonBgColor
           : kInactiveButtonBgColor,
@@ -49,14 +50,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildBottomStackContent() {
-    if (!showResult) {
-      return BmiInfoWidget();
-    } else {
-      final BmiCalculator _bmiResult =
-          BmiCalculator(height: height, weight: weight);
-
-      return BmiResultWidget(bmiResult: _bmiResult);
+    BmiCalculator _bmiResult;
+    if (showResult) {
+      _bmiResult = BmiCalculator(height: height, weight: weight);
     }
+
+    return AnimatedCrossFade(
+      duration: const Duration(milliseconds: 1000),
+      firstChild: BmiInfoWidget(),
+      secondChild: showResult
+          ? BmiResultWidget(bmiResult: _bmiResult)
+          : const SizedBox(),
+      crossFadeState:
+          !showResult ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    );
   }
 
   @override
@@ -64,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        key: const ValueKey<String>('AppBar'),
         title: Text(
           MyLocalizations.of(context).title,
           style: kAppBarTextStyle,

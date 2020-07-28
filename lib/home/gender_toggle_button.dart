@@ -5,6 +5,7 @@ class GenderToggleButton extends StatelessWidget {
     Key key,
     @required this.bgColor,
     @required this.icon,
+    @required this.valueKey,
     @required this.onTap,
     @required this.text,
     @required this.textColor,
@@ -12,6 +13,7 @@ class GenderToggleButton extends StatelessWidget {
 
   final Color bgColor;
   final IconData icon;
+  final ValueKey<String> valueKey;
   final void Function() onTap;
   final String text;
   final Color textColor;
@@ -19,6 +21,7 @@ class GenderToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
+      key: valueKey,
       borderRadius: BorderRadius.circular(24.0),
       child: GestureDetector(
         onTap: onTap,
