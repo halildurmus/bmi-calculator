@@ -1,6 +1,6 @@
 # Contributing
 
-_See also: [BMI Calculator's code of conduct](https://github.com/ibrahim39/CoviData/blob/master/CODE_OF_CONDUCT.md)_
+_See also: [BMI Calculator's code of conduct](https://github.com/ibrahim39/bmi_calculator/blob/master/CODE_OF_CONDUCT.md)_
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
