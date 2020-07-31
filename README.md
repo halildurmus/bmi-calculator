@@ -18,7 +18,8 @@
 </p>
 
 > **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **<a href="https://github.com/flutter/flutter" target="_blank">Flutter</a>**.<br />
-Currently the app supports **English** and **Turkish** languages. I have plans for supporting more languages.
+Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.<br />
+The app also supports **English** and **Turkish** languages. I have plans for supporting more languages.
 
 ## Table of Contents
 
