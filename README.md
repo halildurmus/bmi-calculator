@@ -39,6 +39,7 @@ Currently the app supports **English** and **Turkish** languages. I have plans f
 <p align="center">
   <img width="200" height="370" src="https://github.com/ibrahim39/bmi_calculator/raw/master/screenshots/home.png">
   <img width="200" height="370" src="https://github.com/ibrahim39/bmi_calculator/raw/master/screenshots/result.png">
+  <img width="200" height="370" src="https://github.com/ibrahim39/bmi_calculator/raw/master/screenshots/chart.png">
 </p>
 
 ## Getting Started
