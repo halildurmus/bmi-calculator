@@ -68,17 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        key: const ValueKey<String>('AppBar'),
-        title: Text(
-          MyLocalizations.of(context).title,
-          style: kAppBarTextStyle,
-        ),
-      ),
-      body: Container(
+    Widget _buildBodyWidget() {
+      return Container(
         decoration: kMainContainerDecoration,
+        height: MediaQuery.of(context).size.height < 632.0
+            ? 632.0
+            : double.infinity,
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -253,7 +248,37 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      );
+    }
+
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: kPrimaryColor.withOpacity(.4),
+                blurRadius: 6.0,
+                offset: const Offset(0.0, 2.0),
+              ),
+            ],
+          ),
+          child: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            key: const ValueKey<String>('AppBar'),
+            title: Text(
+              MyLocalizations.of(context).title,
+              style: kAppBarTextStyle,
+            ),
+          ),
+        ),
       ),
+      body: MediaQuery.of(context).size.height < 632.0
+          ? SingleChildScrollView(child: _buildBodyWidget())
+          : _buildBodyWidget(),
     );
   }
 }

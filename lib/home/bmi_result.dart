@@ -34,31 +34,33 @@ class BmiResultWidget extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      context: context,
-                      builder: (BuildContext context) => BmiChart(),
-                    );
-                  },
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        MyLocalizations.of(context).theBmiChart,
-                        style: const TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                key: const ValueKey<String>('BmiChartButton'),
+                onTap: () {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) => BmiChart(),
+                  );
+                },
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      MyLocalizations.of(context).theBmiChart,
+                      style: const TextStyle(
+                        color: kPrimaryColor,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w600,
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 4.0),
-                        child: Icon(
-                          Icons.expand_less,
-                          color: kPrimaryColor,
-                        ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 4.0),
+                      child: Icon(
+                        Icons.expand_less,
+                        color: kPrimaryColor,
                       ),
-                    ],
-                  )),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
           Row(
@@ -91,6 +93,7 @@ class BmiResultWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 bmiResult.getInterpretation(context),
+                key: const ValueKey<String>('BmiInterpretationText'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: bmiResult.getInterpretationColor,

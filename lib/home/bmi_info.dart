@@ -11,6 +11,7 @@ class BmiInfoWidget extends StatelessWidget {
           children: <Text>[
             Text(
               MyLocalizations.of(context).bmiInfoFirst,
+              key: const ValueKey<String>('BmiInfoFirst'),
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black54.withOpacity(.4),
@@ -20,6 +21,7 @@ class BmiInfoWidget extends StatelessWidget {
             ),
             Text(
               MyLocalizations.of(context).bmiInfoSecond,
+              key: const ValueKey<String>('BmiInfoSecond'),
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.grey,
