@@ -37,8 +37,8 @@ Currently the app supports **English** and **Turkish** languages. I have plans f
 ## Screenshots
 
 <p align="center">
-  <img width="200" height="400" src="https://github.com/ibrahim39/bmi_calculator/raw/master/screenshots/home.png">
-  <img width="200" height="400" src="https://github.com/ibrahim39/bmi_calculator/raw/master/screenshots/result.png">
+  <img width="200" height="370" src="https://github.com/ibrahim39/bmi_calculator/raw/master/screenshots/home.png">
+  <img width="200" height="370" src="https://github.com/ibrahim39/bmi_calculator/raw/master/screenshots/result.png">
 </p>
 
 ## Getting Started
@@ -102,3 +102,4 @@ This project is [MIT](https://github.com/ibrahim39/bmi_calculator/blob/master/LI
 * [BMI Chart](https://www.wcrf-uk.org/uk/here-help/health-tools/bmi-calculator)
 * [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter)
 * [Img Shields](https://shields.io) 
+* Our preview mockups were created with <a href="https://previewed.app/">Previewed</a>
