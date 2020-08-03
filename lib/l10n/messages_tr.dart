@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bmiInfoSecond": MessageLookupByLibrary.simpleMessage(
             "\n* Bu hesaplayıcı hamile kadınlar veya çocuklar için kullanılmamalıdır."),
         "bmiInterpretationNormal": MessageLookupByLibrary.simpleMessage(
-            "Normal bir vücut ağırlığınız var. Bravo!"),
+            "Normal bir vücut ağırlığınız var. Harika!"),
         "bmiInterpretationOverweight": MessageLookupByLibrary.simpleMessage(
             "Ağırlığın, normal vücut ağırlığından daha yüksek. Daha fazla egzersiz yapmaya çalış."),
         "bmiInterpretationUnderweight": MessageLookupByLibrary.simpleMessage(

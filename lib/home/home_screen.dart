@@ -224,11 +224,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    child: RaisedButton(
-                      splashColor: kPrimaryColor,
-                      //highlightColor: const Color(0xFFCA4F5D),
+                    child: FlatButton(
                       color: Colors.white,
-                      elevation: 0.0,
                       onPressed: () {
                         setState(() {
                           showResult = !showResult;
@@ -236,9 +233,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       padding: const EdgeInsets.all(24.0),
                       shape: const CircleBorder(),
+                      textColor: kPrimaryColor,
                       child: Icon(
                         !showResult ? Icons.trending_flat : Icons.refresh,
-                        color: kPrimaryColor,
                         size: 48.0,
                       ),
                     ),
@@ -261,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
               BoxShadow(
                 color: kPrimaryColor.withOpacity(.4),
                 blurRadius: 6.0,
-                offset: const Offset(0.0, 2.0),
+                offset: const Offset(.0, 2.0),
               ),
             ],
           ),

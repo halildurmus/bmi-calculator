@@ -14,12 +14,12 @@ void main() {
     expect(find.byKey(const ValueKey<String>('Gender.Male')), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('Gender.Female')), findsOneWidget);
     expect(find.byType(CustomSlider), findsNWidgets(2));
-    expect(find.byType(RaisedButton), findsOneWidget);
+    expect(find.byType(FlatButton), findsOneWidget);
     expect(find.byType(AnimatedCrossFade), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('BmiInfoFirst')), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('BmiInfoSecond')), findsOneWidget);
 
-    await tester.tap(find.byType(RaisedButton));
+    await tester.tap(find.byType(FlatButton));
     await tester.pumpAndSettle();
 
     expect(
