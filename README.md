@@ -1,23 +1,14 @@
 # BMI Calculator
-<p>
-  <a href="https://cirrus-ci.com/ibrahim39/bmi_calculator">
-    <img src="https://api.cirrus-ci.com/github/ibrahim39/bmi_calculator.svg?branch=master" />
-  </a>
-  <a href="https://github.com/ibrahim39/bmi_calculator/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/ibrahim39/bmi_calculator.svg" />
-  </a>
-  <a href="https://github.com/ibrahim39/bmi_calculator/issues">
-    <img src="https://img.shields.io/github/issues/ibrahim39/bmi_calculator.svg" />
-  </a>
-  <a href="https://github.com/ibrahim39/bmi_calculator/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" />
-  </a>
-  <a href="https://linkedin.com/in/ibrahim39">
-    <img alt="LinkedIn" src="https://img.shields.io/badge/-LinkedIn-black.svg?logo=linkedin&colorB=555" />
-  </a> 
-</p>
 
-> **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **<a href="https://github.com/flutter/flutter" target="_blank">Flutter</a>**.<br />
+[![CirrusCI](https://img.shields.io/cirrus/github/ibrahim39/bmi_calculator?style=for-the-badge)](https://cirrus-ci.com/ibrahim39/bmi_calculator)
+![GitHub top language](https://img.shields.io/github/languages/top/ibrahim39/bmi_calculator?style=for-the-badge)
+[![GitHub contributors](https://img.shields.io/github/contributors-anon/ibrahim39/bmi_calculator?style=for-the-badge)](https://github.com/ibrahim39/bmi_calculator/graphs/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/ibrahim39/bmi_calculator?style=for-the-badge)](https://github.com/ibrahim39/bmi_calculator/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/ibrahim39/bmi_calculator/blob/master/LICENSE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&labelColor=blue&style=for-the-badge)](https://linkedin.com/in/ibrahim39)
+![Visits](https://badges.pufler.dev/visits/ibrahim39/bmi_calculator?style=for-the-badge)
+
+> **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.<br />
 Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.<br />
 The app supports **English** and **Turkish** languages. I have plans for supporting more languages.
 
@@ -54,10 +45,7 @@ You need to have **Flutter** installed on your pc.
 
 ### Installation
 
-1. Clone the repo.
-```sh
-git clone https://github.com/ibrahim39/bmi_calculator.git
-```
+1. Clone the repo using: `git clone https://github.com/ibrahim39/bmi_calculator.git`
 2. To get the packages needed for the app, run:
 ```Dart
 flutter pub get
