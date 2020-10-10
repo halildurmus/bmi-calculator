@@ -1,7 +1,7 @@
 pull_request_rules:
-  - name: Automatic merge if the author is ibrahim39 and CI passes
+  - name: Automatic merge if the author is halildurmus and CI passes
     conditions:
-      - author=ibrahim39
+      - author=halildurmus
       - status-success=test
       - status-success=build
       - label!=work-in-progress
