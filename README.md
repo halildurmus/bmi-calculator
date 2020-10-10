@@ -79,7 +79,7 @@ Feel free to check [issues page](https://github.com/halildurmus/bmi_calculator/i
 
 ## Author
 
-👤 **İbrahim Durmuş**
+👤 **Halil İbrahim Durmuş**
 
 - Github: [@halildurmus](https://github.com/halildurmus)
 
