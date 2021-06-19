@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:bmicalculator/constants.dart';
+import '../constants.dart';
 
 // Displays the slider value inside the thumb shape by overriding paint().
 class _CustomSliderThumbCircle extends SliderComponentShape {
   const _CustomSliderThumbCircle({
-    @required this.thumbRadius,
-    @required this.min,
-    @required this.max,
+    required this.thumbRadius,
+    required this.min,
+    required this.max,
   });
 
   final double thumbRadius;
@@ -23,16 +23,16 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
   void paint(
     PaintingContext context,
     Offset center, {
-    Animation<double> activationAnimation,
-    Animation<double> enableAnimation,
-    bool isDiscrete,
-    TextPainter labelPainter,
-    RenderBox parentBox,
-    SliderThemeData sliderTheme,
-    TextDirection textDirection,
-    double value,
-    double textScaleFactor,
-    Size sizeWithOverflow,
+    required Animation<double> activationAnimation,
+    required Animation<double> enableAnimation,
+    required bool isDiscrete,
+    required TextPainter labelPainter,
+    required RenderBox parentBox,
+    required SliderThemeData sliderTheme,
+    required TextDirection textDirection,
+    required double value,
+    required double textScaleFactor,
+    required Size sizeWithOverflow,
   }) {
     final Canvas canvas = context.canvas;
 
@@ -70,13 +70,13 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
 class _CustomTrackShape extends RoundedRectSliderTrackShape {
   @override
   Rect getPreferredRect({
-    @required RenderBox parentBox,
+    required RenderBox parentBox,
     Offset offset = Offset.zero,
-    @required SliderThemeData sliderTheme,
+    required SliderThemeData sliderTheme,
     bool isEnabled = false,
     bool isDiscrete = false,
   }) {
-    final double trackHeight = sliderTheme.trackHeight;
+    final double trackHeight = sliderTheme.trackHeight!;
     final double trackLeft = offset.dx;
     final double trackTop =
         offset.dy + (parentBox.size.height - trackHeight) / 2;
@@ -87,18 +87,19 @@ class _CustomTrackShape extends RoundedRectSliderTrackShape {
 
 class CustomSlider extends StatefulWidget {
   const CustomSlider({
-    @required this.min,
-    @required this.max,
-    @required this.measurementUnit,
-    @required this.onChanged,
-    @required this.value,
-  });
+    Key? key,
+    required this.min,
+    required this.max,
+    required this.measurementUnit,
+    this.onChanged,
+    required this.value,
+  }) : super(key: key);
 
   final double min;
   final double max;
   final String measurementUnit;
   final int value;
-  final ValueChanged<double> onChanged;
+  final ValueChanged<double>? onChanged;
 
   @override
   _CustomSliderState createState() => _CustomSliderState();

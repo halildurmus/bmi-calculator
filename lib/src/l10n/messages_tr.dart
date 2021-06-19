@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ağırlığın, normal vücut ağırlığından daha yüksek. Daha fazla egzersiz yapmaya çalış."),
         "bmiInterpretationUnderweight": MessageLookupByLibrary.simpleMessage(
             "Ağırlığın, normal vücut ağırlığından daha düşük. Biraz daha yiyebilirsin."),
+        "english": MessageLookupByLibrary.simpleMessage("İngilizce"),
         "female": MessageLookupByLibrary.simpleMessage("Kadın"),
         "gender": MessageLookupByLibrary.simpleMessage("CİNSİYET"),
         "height": MessageLookupByLibrary.simpleMessage("BOY"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "theBmiChart": MessageLookupByLibrary.simpleMessage("BMI Grafiği"),
         "close": MessageLookupByLibrary.simpleMessage("Kapat"),
         "title": MessageLookupByLibrary.simpleMessage("BMI Hesaplayıcı"),
+        "turkish": MessageLookupByLibrary.simpleMessage("Türkçe"),
         "weight": MessageLookupByLibrary.simpleMessage("AĞIRLIK"),
         "yourBmi": MessageLookupByLibrary.simpleMessage("BMI DEĞERİN")
       };

@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have a higher than normal body weight. Try to exercise more."),
         "bmiInterpretationUnderweight": MessageLookupByLibrary.simpleMessage(
             "You have a lower than normal body weight. You can eat a bit more."),
+        "english": MessageLookupByLibrary.simpleMessage("English"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "height": MessageLookupByLibrary.simpleMessage("HEIGHT"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "theBmiChart": MessageLookupByLibrary.simpleMessage("The BMI Chart"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "title": MessageLookupByLibrary.simpleMessage("BMI Calculator"),
+        "turkish": MessageLookupByLibrary.simpleMessage("Turkish"),
         "weight": MessageLookupByLibrary.simpleMessage("WEIGHT"),
         "yourBmi": MessageLookupByLibrary.simpleMessage("YOUR BMI")
       };

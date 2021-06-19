@@ -24,7 +24,7 @@ Map<String, LibraryLoader> _deferredLibraries = <String, LibraryLoader>{
   'tr': () => Future<dynamic>.value(null),
 };
 
-MessageLookupByLibrary _findExact(String localeName) {
+MessageLookupByLibrary? _findExact(String localeName) {
   switch (localeName) {
     case 'en':
       return messages_en.messages;
@@ -37,13 +37,13 @@ MessageLookupByLibrary _findExact(String localeName) {
 
 /// User programs should call this before using [localeName] for messages.
 Future<bool> initializeMessages(String localeName) async {
-  final String availableLocale = Intl.verifiedLocale(
+  final String? availableLocale = Intl.verifiedLocale(
       localeName, (String locale) => _deferredLibraries[locale] != null,
       onFailure: (_) => null);
   if (availableLocale == null) {
     return Future<bool>.value(false);
   }
-  final Future<dynamic> Function() lib = _deferredLibraries[availableLocale];
+  final Future<dynamic> Function()? lib = _deferredLibraries[availableLocale];
   await (lib == null ? Future<bool>.value(false) : lib());
   initializeInternalMessageLookup(() => CompositeMessageLookup());
   messageLookup.addLocale(availableLocale, _findGeneratedMessagesFor);
@@ -58,8 +58,8 @@ bool _messagesExistFor(String locale) {
   }
 }
 
-MessageLookupByLibrary _findGeneratedMessagesFor(String locale) {
-  final String actualLocale =
+MessageLookupByLibrary? _findGeneratedMessagesFor(String locale) {
+  final String? actualLocale =
       Intl.verifiedLocale(locale, _messagesExistFor, onFailure: (_) => null);
   if (actualLocale == null) {
     return null;
