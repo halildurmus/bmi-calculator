@@ -20,8 +20,6 @@ Future<void> main() async {
   // Loads the user's preferred settings while the splash screen is displayed.
   await settingsController.loadSettings();
 
-  // Runs the app and pass in the SettingsController. The app listens to the
-  // SettingsController for changes, then passes it further down to the
-  // SettingsView.
+  // Runs the app and pass in the SettingsController.
   runApp(MyApp(settingsController: settingsController));
 }
