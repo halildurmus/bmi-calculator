@@ -1,36 +1,27 @@
-import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:bmicalculator/home/home_screen.dart';
-import 'package:bmicalculator/my_localizations.dart';
+import 'src/app.dart';
+import 'src/settings/impl/settings.controller.impl.dart';
+import 'src/settings/impl/settings.service.impl.dart';
+import 'src/settings/settings.controller.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateTitle: (BuildContext context) =>
-          MyLocalizations.of(context).title,
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-        MyLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const <Locale>[
-        Locale('en', 'US'),
-        Locale('tr', 'TR'),
-      ],
-      theme: ThemeData(
-        bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: Colors.transparent,
-        ),
-        primarySwatch: Colors.red,
-      ),
-      home: const HomeScreen(),
-    );
-  }
+  // Initializes a new SharedPreferences instance.
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  // Sets up the SettingsController, which will glue user settings to multiple
+  // Flutter Widgets.
+  final SettingsController settingsController =
+      SettingsControllerImpl(SettingsServiceImpl(prefs));
+
+  // Loads the user's preferred settings while the splash screen is displayed.
+  await settingsController.loadSettings();
+
+  // Runs the app and pass in the SettingsController. The app listens to the
+  // SettingsController for changes, then passes it further down to the
+  // SettingsView.
+  runApp(MyApp(settingsController: settingsController));
 }

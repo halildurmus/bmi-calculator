@@ -12,6 +12,35 @@ const List<Color> kContainerGradientColors = <Color>[
 ];
 
 // Decorations
+final BoxDecoration kAppBarDecoration = BoxDecoration(
+  shape: BoxShape.circle,
+  boxShadow: <BoxShadow>[
+    BoxShadow(
+      color: kPrimaryColor.withOpacity(.4),
+      blurRadius: 6.0,
+      offset: const Offset(.0, 2.0),
+    ),
+  ],
+);
+
+final ButtonStyle kCircleButtonStyle = TextButton.styleFrom(
+  backgroundColor: Colors.white,
+  padding: const EdgeInsets.all(24.0),
+  shape: const CircleBorder(),
+  textStyle: const TextStyle(color: kPrimaryColor),
+);
+
+final BoxDecoration kCircleButtonDecoration = BoxDecoration(
+  shape: BoxShape.circle,
+  boxShadow: <BoxShadow>[
+    BoxShadow(
+      color: kPrimaryColor.withOpacity(.4),
+      blurRadius: 6.0,
+      offset: const Offset(0.0, 2.0),
+    ),
+  ],
+);
+
 const BoxDecoration kMainContainerDecoration = BoxDecoration(
   gradient: LinearGradient(
     begin: Alignment.topCenter,
@@ -20,11 +49,9 @@ const BoxDecoration kMainContainerDecoration = BoxDecoration(
   ),
 );
 
+// Text Styles
 const TextStyle kAppBarTextStyle = TextStyle(
   color: Color(0xFFCA4F5D),
   fontSize: 22.0,
   fontWeight: FontWeight.w900,
 );
-
-const double kActiveButtonElevation = 8.0;
-const double kInactiveButtonElevation = 0.0;

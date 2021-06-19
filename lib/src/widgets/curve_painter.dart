@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CurvePainter extends CustomPainter {
-  const CurvePainter({@required this.color, @required this.pathNo});
+  const CurvePainter({required this.color, required this.pathNo});
 
   final Color color;
   final int pathNo;
