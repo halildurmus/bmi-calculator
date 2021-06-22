@@ -1,12 +1,12 @@
 # BMI Calculator
 
-[![CirrusCI](https://img.shields.io/cirrus/github/halildurmus/bmi_calculator?style=for-the-badge)](https://cirrus-ci.com/halildurmus/bmi_calculator)
-![GitHub top language](https://img.shields.io/github/languages/top/halildurmus/bmi_calculator?style=for-the-badge)
-[![GitHub contributors](https://img.shields.io/github/contributors-anon/halildurmus/bmi_calculator?style=for-the-badge)](https://github.com/halildurmus/bmi_calculator/graphs/contributors)
-[![GitHub issues](https://img.shields.io/github/issues/halildurmus/bmi_calculator?style=for-the-badge)](https://github.com/halildurmus/bmi_calculator/issues)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/halildurmus/bmi_calculator/blob/master/LICENSE)
+[![CirrusCI](https://img.shields.io/cirrus/github/halildurmus/bmi-calculator?style=for-the-badge)](https://cirrus-ci.com/halildurmus/bmi-calculator)
+![GitHub top language](https://img.shields.io/github/languages/top/halildurmus/bmi-calculator?style=for-the-badge)
+[![GitHub contributors](https://img.shields.io/github/contributors-anon/halildurmus/bmi-calculator?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/graphs/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/halildurmus/bmi-calculator?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/blob/master/LICENSE)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&labelColor=blue&style=for-the-badge)](https://linkedin.com/in/halildurmus)
-![Visits](https://badges.pufler.dev/visits/halildurmus/bmi_calculator?style=for-the-badge)
+![Visits](https://badges.pufler.dev/visits/halildurmus/bmi-calculator?style=for-the-badge)
 
 > **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.<br />
 Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.<br />
@@ -28,7 +28,7 @@ The app supports **English** and **Turkish** languages.
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/halildurmus/bmi_calculator/master/screenshots/preview.png)
+![](https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/preview.png)
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ You need to have **Flutter** installed on your pc.
 
 ### Installation
 
-1. Clone the repo using: `git clone https://github.com/halildurmus/bmi_calculator.git`
+1. Clone the repo using: `git clone https://github.com/halildurmus/bmi-calculator.git`
 2. To get the packages needed for the app, run:
 ```Dart
 flutter pub get
@@ -56,21 +56,21 @@ flutter run
 
 ## Roadmap
 
-See the [open issues](https://github.com/halildurmus/bmi_calculator/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/halildurmus/bmi-calculator/issues) for a list of proposed features (and known issues).
 
 ## Code Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
 
 
-<a href="https://github.com/halildurmus/bmi_calculator/graphs/contributors">
+<a href="https://github.com/halildurmus/bmi-calculator/graphs/contributors">
   <img class="avatar" alt="halildurmus" src="https://github.com/halildurmus.png?v=4&s=96" width="48" height="48" />
 </a>
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome.<br />
-Feel free to check [issues page](https://github.com/halildurmus/bmi_calculator/issues) if you want to contribute.<br />
+Feel free to check [issues page](https://github.com/halildurmus/bmi-calculator/issues) if you want to contribute.<br />
 [Check the contributing guide](./CONTRIBUTING.md).<br />
 
 ## Author
@@ -81,7 +81,7 @@ Feel free to check [issues page](https://github.com/halildurmus/bmi_calculator/i
 
 ## 📝 License
 
-This project is [MIT](https://github.com/halildurmus/bmi_calculator/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/halildurmus/bmi-calculator/blob/master/LICENSE) licensed.
 
 ## Acknowledgements
 * [BMI Calculator - Daily UI challenge](https://dribbble.com/shots/2999904-BMI-Calculator-Daily-UI-challenge)
