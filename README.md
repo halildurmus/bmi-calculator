@@ -77,16 +77,16 @@ Feel free to check [issues page](https://github.com/halildurmus/bmi-calculator/i
 
 👤 **Halil İbrahim Durmuş**
 
-- Github: [@halildurmus](https://github.com/halildurmus)
+- Github: [@halildurmus](https://github.com/halildurmus "halildurmus")
 
 ## 📝 License
 
 This project is [MIT](https://github.com/halildurmus/bmi-calculator/blob/master/LICENSE) licensed.
 
 ## Acknowledgements
-* [BMI Calculator - Daily UI challenge](https://dribbble.com/shots/2999904-BMI-Calculator-Daily-UI-challenge, "BMI Calculator - Daily UI challenge")
+* [BMI Calculator - Daily UI challenge](https://dribbble.com/shots/2999904-BMI-Calculator-Daily-UI-challenge "BMI Calculator - Daily UI challenge")
 * [BMI Chart](https://www.wcrf-uk.org/uk/here-help/health-tools/bmi-calculator)
-* Country Icons made by [Freepik](https://www.freepik.com, "Freepik") from [www.flaticon.com](https://www.flaticon.com, "Flaticon")
-* [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter, "font_awesome_flutter")
-* [Img Shields](https://shields.io, "Img Shields") 
-* Our preview mockups were created with [Previewed](https://previewed.app, "Previewed")
+* Country Icons made by [Freepik](https://www.freepik.com "Freepik") from [www.flaticon.com](https://www.flaticon.com "Flaticon")
+* [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter "font_awesome_flutter")
+* [Img Shields](https://shields.io "Img Shields") 
+* Our preview mockups were created with [Previewed](https://previewed.app "Previewed")
