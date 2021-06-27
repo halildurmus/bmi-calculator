@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/app.dart';
-import 'src/settings/impl/settings.controller.impl.dart';
-import 'src/settings/impl/settings.service.impl.dart';
-import 'src/settings/settings.controller.dart';
+import 'src/settings/settings.controller.impl.dart';
+import 'src/settings/settings.service.impl.dart';
+import 'src/settings/settings_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

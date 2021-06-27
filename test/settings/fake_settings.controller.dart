@@ -1,5 +1,5 @@
-import 'package:bmicalculator/src/settings/settings.controller.dart';
-import 'package:bmicalculator/src/settings/settings.service.dart';
+import 'package:bmicalculator/src/settings/settings_controller.dart';
+import 'package:bmicalculator/src/settings/settings_service.dart';
 import 'package:flutter/material.dart';
 
 /// A fake [SettingsController] implementation that used in testing.
@@ -9,41 +9,41 @@ class FakeSettingsController with ChangeNotifier implements SettingsController {
   // Make SettingsService a private variable so it is not used directly.
   final SettingsService _settingsService;
 
-  // Make language a private variable so it is not updated directly.
-  late String _language;
+  // Make locale a private variable so it is not updated directly.
+  late Locale _locale;
 
-  // Allow Widgets to read the user's preferred language.
+  // Allow Widgets to read the user's preferred locale.
   @override
-  String get language => _language;
+  Locale get locale => _locale;
 
   /// Loads the user's settings from the SettingsService.
   @override
   Future<void> loadSettings() async {
-    _language = await _settingsService.language();
+    _locale = await _settingsService.locale();
 
     // Informs listeners a change has occurred.
     notifyListeners();
   }
 
-  /// Updates the language based on the user's selection.
+  /// Updates the locale based on the user's selection.
   @override
-  Future<void> updateLanguage(String? newLanguage) async {
-    if (newLanguage == null) {
+  Future<void> updateLocale(Locale? newLocale) async {
+    if (newLocale == null) {
       return;
     }
 
-    // Do not perform any work if new and old language are identical.
-    if (newLanguage == _language) {
+    // Dot not perform any work if new and old locale are identical
+    if (newLocale == _locale) {
       return;
     }
 
-    // Otherwise, store the new language in memory.
-    _language = newLanguage;
+    // Otherwise, store the new locale in memory
+    _locale = newLocale;
 
     // Informs listeners a change has occurred.
     notifyListeners();
 
     // Persist the changes to a local database using the SettingService.
-    await _settingsService.updateLanguage(newLanguage);
+    await _settingsService.updateLocale(newLocale);
   }
 }

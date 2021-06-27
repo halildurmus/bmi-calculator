@@ -1,14 +1,21 @@
 import 'dart:io';
 
-import 'package:bmicalculator/src/settings/settings.service.dart';
+import 'package:bmicalculator/src/settings/settings_service.dart';
+import 'package:flutter/material.dart' show Locale;
 
 /// A fake [SettingsService] implementation that used in testing.
 class FakeSettingsService implements SettingsService {
   @override
-  Future<String> language() async {
-    return Future<String>.value(Platform.localeName);
+  Future<Locale> locale() async {
+    final String language = Platform.localeName;
+    final Locale locale = Locale.fromSubtags(
+      languageCode: language.split('-')[0],
+      countryCode: language.split('-')[1],
+    );
+
+    return Future<Locale>.value(locale);
   }
 
   @override
-  Future<void> updateLanguage(String language) async {}
+  Future<void> updateLocale(Locale locale) async {}
 }

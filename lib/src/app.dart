@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localizations.dart';
 import 'constants.dart';
 import 'home/home_screen.dart';
-import 'settings/settings.controller.dart';
+import 'settings/settings_controller.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.settingsController}) : super(key: key);
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          locale: Locale(settingsController.language.split('_')[0]),
+          locale: settingsController.locale,
           localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
             MyLocalizationsDelegate(),
             GlobalMaterialLocalizations.delegate,

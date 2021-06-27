@@ -6,7 +6,7 @@ import '../constants.dart';
 import '../models/bmi.dart';
 import '../models/gender.dart';
 import '../models/language.dart';
-import '../settings/settings.controller.dart';
+import '../settings/settings_controller.dart';
 import '../widgets/curve_painter.dart';
 import '../widgets/gender_toggle_button.dart';
 import '../widgets/slider.dart';
@@ -37,12 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
     Widget _buildPopupMenuButton() {
       return PopupMenuButton<Language>(
-        icon: SvgPicture.asset('assets/icons/${controller.language}.svg'),
+        icon: SvgPicture.asset(
+            'assets/icons/${controller.locale.toLanguageTag()}.svg'),
         onSelected: (Language result) {
           if (result == Language.English) {
-            controller.updateLanguage('en_US');
+            controller.updateLocale(const Locale('en', 'US'));
           } else if (result == Language.Turkish) {
-            controller.updateLanguage('tr_TR');
+            controller.updateLocale(const Locale('tr', 'TR'));
           }
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<Language>>[
@@ -53,14 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    SvgPicture.asset('assets/icons/en_US.svg',
+                    SvgPicture.asset('assets/icons/en-US.svg',
                         height: 20, width: 20),
                     const SizedBox(width: 8),
                     Text(AppLocalizations.of(context)!.english,
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.language == 'en_US')
+                if (controller.locale == const Locale('en', 'US'))
                   const Icon(Icons.check, color: kPrimaryColor)
               ],
             ),
@@ -72,14 +73,14 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    SvgPicture.asset('assets/icons/tr_TR.svg',
+                    SvgPicture.asset('assets/icons/tr-TR.svg',
                         height: 20, width: 20),
                     const SizedBox(width: 8),
                     Text(AppLocalizations.of(context)!.turkish,
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.language == 'tr_TR')
+                if (controller.locale == const Locale('tr', 'TR'))
                   const Icon(Icons.check, color: kPrimaryColor)
               ],
             ),
