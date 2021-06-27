@@ -7,7 +7,7 @@ import 'package:flutter/material.dart' show Locale;
 class FakeSettingsService implements SettingsService {
   @override
   Future<Locale> locale() async {
-    final String language = Platform.localeName;
+    final String language = Platform.localeName.replaceFirst('_', '-');
     final Locale locale = Locale.fromSubtags(
       languageCode: language.split('-')[0],
       countryCode: language.split('-')[1],
