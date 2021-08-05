@@ -28,7 +28,11 @@ The app supports **English** and **Turkish** languages.
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/preview.png)
+<p align="center">
+    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/home.png" width="300">
+    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/result.png" width="300">
+    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/bmi-chart.png" width="300">
+</p>
 
 ## Getting Started
 
@@ -89,4 +93,4 @@ This project is [MIT](https://github.com/halildurmus/bmi-calculator/blob/master/
 * Country Icons made by [Freepik](https://www.freepik.com "Freepik") from [www.flaticon.com](https://www.flaticon.com "Flaticon")
 * [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter "font_awesome_flutter")
 * [Img Shields](https://shields.io "Img Shields") 
-* Our preview mockups were created with [Previewed](https://previewed.app "Previewed")
+* Preview mockups were created with [AppMockUp](https://app-mockup.com "AppMockUp")
