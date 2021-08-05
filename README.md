@@ -8,8 +8,8 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&labelColor=blue&style=for-the-badge)](https://linkedin.com/in/halildurmus)
 ![Visits](https://badges.pufler.dev/visits/halildurmus/bmi-calculator?style=for-the-badge)
 
-> **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.<br />
-Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.<br />
+> **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.  
+Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.  
 The app supports **English** and **Turkish** languages.
 
 ## Table of Contents
@@ -73,9 +73,9 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome.<br />
-Feel free to check [issues page](https://github.com/halildurmus/bmi-calculator/issues) if you want to contribute.<br />
-[Check the contributing guide](./CONTRIBUTING.md).<br />
+Contributions, issues and feature requests are welcome.  
+Feel free to check [issues page](https://github.com/halildurmus/bmi-calculator/issues) if you want to contribute.  
+[Check the contributing guide](./CONTRIBUTING.md).  
 
 ## Author
 
