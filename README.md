@@ -29,9 +29,9 @@ The app supports **English** and **Turkish** languages.
 ## Screenshots
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/home.png" width="300">
-    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/result.png" width="300">
-    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/bmi-chart.png" width="300">
+    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/home.png" width="270">
+    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/result.png" width="270">
+    <img src="https://raw.githubusercontent.com/halildurmus/bmi-calculator/master/screenshots/bmi-chart.png" width="270">
 </p>
 
 ## Getting Started
