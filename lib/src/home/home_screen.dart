@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Gender _selectedGender = Gender.Male;
+  Gender _selectedGender = Gender.male;
   int height = 170;
   int weight = 65;
 
@@ -40,15 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
         icon: SvgPicture.asset(
             'assets/icons/${controller.locale.toLanguageTag()}.svg'),
         onSelected: (Language result) {
-          if (result == Language.English) {
+          if (result == Language.english) {
             controller.updateLocale(const Locale('en', 'US'));
-          } else if (result == Language.Turkish) {
+          } else if (result == Language.turkish) {
             controller.updateLocale(const Locale('tr', 'TR'));
           }
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<Language>>[
           PopupMenuItem<Language>(
-            value: Language.English,
+            value: Language.english,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           PopupMenuItem<Language>(
-            value: Language.Turkish,
+            value: Language.turkish,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -139,14 +139,14 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: _buildGenderToggleButton(
               title: AppLocalizations.of(context)!.male,
-              gender: Gender.Male,
+              gender: Gender.male,
             ),
           ),
           const SizedBox(width: 16.0),
           Expanded(
             child: _buildGenderToggleButton(
               title: AppLocalizations.of(context)!.female,
-              gender: Gender.Female,
+              gender: Gender.female,
             ),
           ),
         ],

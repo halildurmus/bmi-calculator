@@ -60,7 +60,7 @@ class GenderToggleButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(
-            gender == Gender.Male
+            gender == Gender.male
                 ? FontAwesomeIcons.mars
                 : FontAwesomeIcons.venus,
             color: textColor,
