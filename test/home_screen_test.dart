@@ -1,6 +1,6 @@
-import 'package:bmicalculator/src/app.dart';
-import 'package:bmicalculator/src/settings/settings.controller.impl.dart';
-import 'package:bmicalculator/src/widgets/slider.dart';
+import 'package:bmi_calculator/src/app.dart';
+import 'package:bmi_calculator/src/settings/settings.controller.impl.dart';
+import 'package:bmi_calculator/src/widgets/slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

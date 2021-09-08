@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bmicalculator/src/settings/settings_service.dart';
+import 'package:bmi_calculator/src/settings/settings_service.dart';
 import 'package:flutter/material.dart' show Locale;
 
 /// A fake [SettingsService] implementation that used in testing.

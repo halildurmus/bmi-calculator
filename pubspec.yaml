@@ -1,4 +1,4 @@
-name: bmicalculator
+name: bmi_calculator
 description: A BMI calculator app developed with Flutter.
 publish_to: 'none'
 version: 2.0.0+1

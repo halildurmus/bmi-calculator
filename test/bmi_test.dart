@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:bmicalculator/src/models/bmi.dart';
+import 'package:bmi_calculator/src/models/bmi.dart';
 
 void main() {
   test('BMI should be properly calculated with passed arguments', () {
