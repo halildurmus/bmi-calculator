@@ -1,13 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show ChangeNotifier, Locale;
 
 import 'settings_controller.dart';
 import 'settings_service.dart';
 
-/// A class that many Widgets can interact with to read user settings, update
-/// user settings, or listen to user settings changes.
+/// An implementation of the [SettingsController] that many Widgets
+/// can interact with to read user settings, update user settings,
+/// or listen to user settings changes.
 ///
-/// Controllers glue Data Services to Flutter Widgets. The SettingsController
-/// uses the [SettingsService] to store and retrieve user settings.
+/// Controllers glue Data Services to Flutter Widgets.
+/// The [SettingsControllerImpl] uses the [SettingsService] to store
+/// and retrieve user settings.
 class SettingsControllerImpl with ChangeNotifier implements SettingsController {
   SettingsControllerImpl(this._settingsService);
 
@@ -22,7 +24,7 @@ class SettingsControllerImpl with ChangeNotifier implements SettingsController {
   @override
   Locale get locale => _locale;
 
-  /// Loads the user's settings from the SettingsService. It may load from a
+  /// Load the user's settings from the [SettingsService]. It may load from a
   /// local database or the internet. The controller only knows it can load the
   /// settings from the service.
   @override

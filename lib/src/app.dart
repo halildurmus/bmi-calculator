@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localizations.dart';
 import 'constants.dart';
 import 'home/home_screen.dart';
+import 'settings/locales.dart' as locales;
 import 'settings/settings_controller.dart';
 
 class MyApp extends StatelessWidget {
@@ -27,10 +28,7 @@ class MyApp extends StatelessWidget {
           ],
           onGenerateTitle: (BuildContext context) =>
               AppLocalizations.of(context)!.title,
-          supportedLocales: const <Locale>[
-            Locale('en', 'US'),
-            Locale('tr', 'TR'),
-          ],
+          supportedLocales: locales.supportedLocales,
           theme: ThemeData(
             bottomSheetTheme: const BottomSheetThemeData(
               backgroundColor: Colors.transparent,
