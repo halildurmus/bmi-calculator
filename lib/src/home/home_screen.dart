@@ -40,15 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
         icon: SvgPicture.asset(
             'assets/icons/${controller.locale.toLanguageTag()}.svg'),
         onSelected: (Locale result) {
-          if (result == locales.en_US) {
-            controller.updateLocale(locales.en_US);
-          } else if (result == locales.tr_TR) {
-            controller.updateLocale(locales.tr_TR);
+          if (result == locales.enUS) {
+            controller.updateLocale(locales.enUS);
+          } else if (result == locales.trTR) {
+            controller.updateLocale(locales.trTR);
           }
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<Locale>>[
           PopupMenuItem<Locale>(
-            value: locales.en_US,
+            value: locales.enUS,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -61,13 +61,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.locale == locales.en_US)
+                if (controller.locale == locales.enUS)
                   const Icon(Icons.check, color: kPrimaryColor)
               ],
             ),
           ),
           PopupMenuItem<Locale>(
-            value: locales.tr_TR,
+            value: locales.trTR,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.locale == locales.tr_TR)
+                if (controller.locale == locales.trTR)
                   const Icon(Icons.check, color: kPrimaryColor)
               ],
             ),
