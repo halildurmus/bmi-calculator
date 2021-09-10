@@ -22,8 +22,8 @@ void main() {
     await tester.pump();
 
     expect(find.byKey(const ValueKey<String>('AppBar')), findsOneWidget);
-    expect(find.byKey(const ValueKey<String>('Gender.Male')), findsOneWidget);
-    expect(find.byKey(const ValueKey<String>('Gender.Female')), findsOneWidget);
+    expect(find.byKey(const ValueKey<String>('Gender.male')), findsOneWidget);
+    expect(find.byKey(const ValueKey<String>('Gender.female')), findsOneWidget);
     expect(find.byType(CustomSlider), findsNWidgets(2));
     expect(find.byType(TextButton), findsOneWidget);
     expect(find.byType(AnimatedCrossFade), findsOneWidget);
