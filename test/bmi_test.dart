@@ -1,7 +1,6 @@
+import 'package:bmi_calculator/src/home/models/bmi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:bmi_calculator/src/models/bmi.dart';
 
 void main() {
   test('BMI should be properly calculated with passed arguments', () {
@@ -9,7 +8,7 @@ void main() {
     int _height = 182;
     int _weight = 76;
 
-    BMI _bmi = BMI(height: _height, weight: _weight);
+    Bmi _bmi = Bmi(height: _height, weight: _weight);
     String _bmiAsString = _bmi.bmiAsString;
     String _bmiIntegerPart = _bmi.wholeNumber;
     String _bmiDecimalPart = _bmi.decimalPart;
@@ -24,7 +23,7 @@ void main() {
     _height = 170;
     _weight = 50;
 
-    _bmi = BMI(height: _height, weight: _weight);
+    _bmi = Bmi(height: _height, weight: _weight);
     _bmiAsString = _bmi.bmiAsString;
     _bmiIntegerPart = _bmi.wholeNumber;
     _bmiDecimalPart = _bmi.decimalPart;
@@ -39,7 +38,7 @@ void main() {
     _height = 170;
     _weight = 75;
 
-    _bmi = BMI(height: _height, weight: _weight);
+    _bmi = Bmi(height: _height, weight: _weight);
     _bmiAsString = _bmi.bmiAsString;
     _bmiIntegerPart = _bmi.wholeNumber;
     _bmiDecimalPart = _bmi.decimalPart;

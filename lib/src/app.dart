@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'app_localizations.dart';
-import 'constants.dart';
-import 'home/home_screen.dart';
-import 'settings/locales.dart' as locales;
-import 'settings/settings_controller.dart';
+import 'home/home_screen_builder.dart';
+import 'l10n/app_localizations.dart';
+import 'l10n/locales.dart';
+import 'settings/settings.controller.dart';
+import 'theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.settingsController}) : super(key: key);
@@ -28,16 +28,9 @@ class MyApp extends StatelessWidget {
           ],
           onGenerateTitle: (BuildContext context) =>
               AppLocalizations.of(context)!.title,
-          supportedLocales: locales.supportedLocales,
-          theme: ThemeData(
-            bottomSheetTheme: const BottomSheetThemeData(
-              backgroundColor: Colors.transparent,
-            ),
-            primaryColor: kPrimaryColor,
-            iconTheme: IconTheme.of(context).copyWith(color: kPrimaryColor),
-            primarySwatch: Colors.red,
-          ),
-          home: HomeScreen(settingsController: settingsController),
+          supportedLocales: kSupportedLocales,
+          theme: lightTheme(context),
+          home: HomeScreenBuilder(settingsController: settingsController),
         );
       },
     );

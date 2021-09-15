@@ -2,10 +2,11 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
 
-import '../app_localizations.dart';
+import '../../constants.dart';
+import '../../l10n/app_localizations.dart';
 
-class BmiChart extends StatelessWidget {
-  const BmiChart({Key? key}) : super(key: key);
+class BmiChartWidget extends StatelessWidget {
+  const BmiChartWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +29,13 @@ class BmiChart extends StatelessWidget {
         style: TextButton.styleFrom(primary: theme.primaryColor),
         child: Text(
           AppLocalizations.of(context)!.close,
-          style: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       );
     }
 
     return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -47,13 +45,13 @@ class BmiChart extends StatelessWidget {
           color: Colors.white,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               _buildBmiChartText(),
-              Image.asset('assets/images/bmi-chart.png'),
+              Image.asset(kBmiChartImage),
               _buildCloseButton(),
             ],
           ),

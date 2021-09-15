@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 import '../models/gender.dart';
 
 class GenderToggleButton extends StatelessWidget {
@@ -48,11 +48,11 @@ class GenderToggleButton extends StatelessWidget {
         ),
         padding: MaterialStateProperty.resolveWith<EdgeInsets?>(
           (Set<MaterialState> states) =>
-              const EdgeInsets.symmetric(vertical: 10.0),
+              const EdgeInsets.symmetric(vertical: 10),
         ),
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (Set<MaterialState> states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24.0),
+            borderRadius: BorderRadius.circular(24),
           ),
         ),
       ),
@@ -65,15 +65,8 @@ class GenderToggleButton extends StatelessWidget {
                 : FontAwesomeIcons.venus,
             color: textColor,
           ),
-          const SizedBox(width: 8.0),
-          Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+          const SizedBox(width: 8),
+          Text(text, style: TextStyle(color: textColor, fontSize: 16)),
         ],
       ),
     );

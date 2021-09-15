@@ -1,18 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../constants.dart';
-import 'bmi_chart.dart';
+import '../../l10n/app_localizations.dart';
 import '../models/bmi.dart';
-import '../app_localizations.dart';
+import 'bmi_chart.dart';
 
-class BmiResultWidget extends StatelessWidget {
-  const BmiResultWidget({Key? key, required this.bmiResult}) : super(key: key);
+class BmiResultWidget extends ConsumerWidget {
+  const BmiResultWidget({Key? key, required this.bmi}) : super(key: key);
 
-  final BMI bmiResult;
+  final Bmi bmi;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final ThemeData theme = Theme.of(context);
     final TextTheme textTheme = theme.textTheme;
 
@@ -21,7 +20,7 @@ class BmiResultWidget extends StatelessWidget {
         AppLocalizations.of(context)!.yourBmi,
         style: textTheme.bodyText1!.copyWith(
           color: Colors.black.withOpacity(.55),
-          fontSize: 13.0,
+          fontSize: 13,
           fontWeight: FontWeight.w900,
         ),
       );
@@ -33,7 +32,7 @@ class BmiResultWidget extends StatelessWidget {
         onTap: () {
           showModalBottomSheet<void>(
             context: context,
-            builder: (BuildContext context) => const BmiChart(),
+            builder: (BuildContext context) => const BmiChartWidget(),
           );
         },
         child: Row(
@@ -41,8 +40,8 @@ class BmiResultWidget extends StatelessWidget {
             Text(
               AppLocalizations.of(context)!.theBmiChart,
               style: textTheme.bodyText1!.copyWith(
-                color: kPrimaryColor,
-                fontSize: 12.0,
+                color: theme.primaryColor,
+                fontSize: 12,
               ),
             ),
             const SizedBox(width: 4),
@@ -58,17 +57,15 @@ class BmiResultWidget extends StatelessWidget {
         textBaseline: TextBaseline.alphabetic,
         children: <Widget>[
           Text(
-            bmiResult.wholeNumber,
-            style: textTheme.headline3!.copyWith(
-              color: kPrimaryColor,
-            ),
+            bmi.wholeNumber,
+            style: textTheme.headline3!.copyWith(color: theme.primaryColor),
           ),
           const SizedBox(height: 5),
           Text(
-            bmiResult.decimalPart,
+            bmi.decimalPart,
             style: textTheme.headline5!.copyWith(
-              color: kPrimaryColor,
-              fontSize: 28.0,
+              color: theme.primaryColor,
+              fontSize: 28,
             ),
           )
         ],
@@ -78,26 +75,22 @@ class BmiResultWidget extends StatelessWidget {
     Widget _buildBmiInterpretation() {
       return Center(
         child: Text(
-          bmiResult.getInterpretationText(context),
+          bmi.getInterpretationText(context),
           key: const ValueKey<String>('BmiInterpretationText'),
           textAlign: TextAlign.center,
-          style: textTheme.bodyText1!
-              .copyWith(color: bmiResult.interpretationColor),
+          style: textTheme.bodyText1!.copyWith(color: bmi.interpretationColor),
         ),
       );
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24.0, 140.0, 24.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(24, 140, 24, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _buildYourBmiText(),
-              _buildBmiChartButton(),
-            ],
+            children: <Widget>[_buildYourBmiText(), _buildBmiChartButton()],
           ),
           _buildBmiValue(),
           const SizedBox(height: 10),

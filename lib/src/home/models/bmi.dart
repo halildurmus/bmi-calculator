@@ -2,18 +2,19 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../app_localizations.dart';
+import '../../constants.dart';
+import '../../l10n/app_localizations.dart';
 
 /// A class that calculates BMI.
-class BMI {
-  /// Creates an instance of [BMI] with given named parameters [height]
+class Bmi {
+  /// Creates an instance of [Bmi] with given named parameters [height]
   /// and [weight].
   ///
   /// The formula used in calculating BMI is using the `Metric` units.
-  /// Therefore, the [height] must be entered in `centimeters(cm)`
-  /// and the [weight] must be entered in `kilograms(kg)`.
-  BMI({required this.height, required this.weight}) {
-    // Formula for the BMI in the Metric system.
+  /// Therefore, the [height] must be in `centimeters(cm)` and the [weight]
+  /// must be in `kilograms(kg)`.
+  Bmi({required this.height, required this.weight}) {
+    // BMI formula using the Metric system.
     _bmi = weight / pow(height / 100, 2);
   }
 
@@ -64,7 +65,7 @@ class BMI {
     if (bmi >= 25) {
       return Colors.red;
     } else if (bmi > 18.5) {
-      return const Color(0xFF66BB6A);
+      return kNormalBmiColor;
     }
 
     return Colors.orange;
