@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'home/home_screen_builder.dart';
+import 'home/home_screen.dart';
 import 'l10n/app_localizations.dart';
 import 'l10n/locales.dart';
 import 'settings/settings.controller.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               AppLocalizations.of(context)!.title,
           supportedLocales: kSupportedLocales,
           theme: lightTheme(context),
-          home: HomeScreenBuilder(settingsController: settingsController),
+          home: HomeScreen(settingsController: settingsController),
         );
       },
     );

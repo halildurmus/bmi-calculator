@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
@@ -6,6 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../l10n/locales.dart' as locales;
 import '../settings/settings.controller.dart';
 import 'models/bmi.dart';
+import 'models/bmi_view_model.dart';
 import 'models/gender.dart';
 import 'widgets/bmi_info.dart';
 import 'widgets/bmi_result.dart';
@@ -13,31 +15,32 @@ import 'widgets/curves.dart';
 import 'widgets/gender_toggle_button.dart';
 import 'widgets/slider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    Key? key,
-    required this.bmiResult,
-    required this.isBmiCalculated,
-    required this.onReset,
-    required this.onSubmit,
-    required this.settingsController,
-  }) : super(key: key);
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({Key? key, required this.settingsController})
+      : super(key: key);
 
-  final Bmi? bmiResult;
-  // Controls content to be displayed depending on the user's actions.
-  final bool isBmiCalculated;
-  final void Function() onReset;
-  final Function(int, int) onSubmit;
   final SettingsController settingsController;
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   Gender _selectedGender = Gender.male;
   int height = 170;
   int weight = 65;
+  bool isBmiCalculated = false;
+  late Bmi bmiResult;
+
+  void _calculateBmi(BuildContext ctx, WidgetRef ref, int height, int weight) {
+    final model = ref.read(bmiProvider.notifier);
+    model.calculate(height: height, weight: weight);
+  }
+
+  void _resetBmi(BuildContext ctx, WidgetRef ref) {
+    final model = ref.read(bmiProvider.notifier);
+    model.reset();
+  }
 
   PreferredSizeWidget _buildAppBar() {
     final SettingsController controller = widget.settingsController;
@@ -128,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }) {
     return GenderToggleButton(
       valueKey: ValueKey<String>('$gender'),
-      onTap: !widget.isBmiCalculated
+      onTap: !isBmiCalculated
           ? () {
               setState(() {
                 _selectedGender = gender;
@@ -187,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
         max: 220,
         measurementUnit: 'cm',
         value: height,
-        onChanged: !widget.isBmiCalculated
+        onChanged: !isBmiCalculated
             ? (double newValue) {
                 setState(() {
                   height = newValue.round();
@@ -213,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
         max: 120,
         measurementUnit: 'kg',
         value: weight,
-        onChanged: !widget.isBmiCalculated
+        onChanged: !isBmiCalculated
             ? (double newValue) {
                 setState(() {
                   weight = newValue.round();
@@ -230,13 +233,13 @@ class _HomeScreenState extends State<HomeScreen> {
       child: DecoratedBox(
         decoration: kActionButtonDecoration,
         child: FloatingActionButton.large(
-          onPressed: widget.isBmiCalculated
-              ? () => widget.onReset()
-              : () => widget.onSubmit(height, weight),
+          onPressed: isBmiCalculated
+              ? () => _resetBmi(context, ref)
+              : () => _calculateBmi(context, ref, height, weight),
           backgroundColor: Colors.white,
           elevation: 0,
           child: Icon(
-            widget.isBmiCalculated ? Icons.refresh : Icons.trending_flat,
+            isBmiCalculated ? Icons.refresh : Icons.trending_flat,
             color: Theme.of(context).primaryColor,
             size: 48,
           ),
@@ -245,63 +248,71 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _buildBottomContent() {
+    return AnimatedCrossFade(
+      duration: const Duration(milliseconds: 1000),
+      firstChild: const BmiInfoWidget(),
+      secondChild:
+          isBmiCalculated ? BmiResultWidget(bmi: bmiResult) : const SizedBox(),
+      crossFadeState: !isBmiCalculated
+          ? CrossFadeState.showFirst
+          : CrossFadeState.showSecond,
+    );
+  }
+
+  Widget _buildBody() {
+    final double deviceHeight = MediaQuery.of(context).size.height;
+    final double deviceWidth = MediaQuery.of(context).size.width;
+
+    return Container(
+      decoration: kMainContainerDecoration,
+      height: deviceHeight < 632 ? 632 : double.infinity,
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: deviceWidth / 12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(height: 20),
+                  _buildGenderText(),
+                  _buildGenderButtons(),
+                  _buildHeightText(),
+                  _buildHeightSlider(),
+                  _buildWeightText(),
+                  _buildWeightSlider(),
+                ],
+              ),
+            ),
+          ),
+          Stack(
+            alignment: Alignment.topRight,
+            children: <Widget>[
+              const CurvesWidget(),
+              _buildBottomContent(),
+              _buildActionButton(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double deviceHeight = MediaQuery.of(context).size.height;
 
-    Widget _buildBottomContent() {
-      return AnimatedCrossFade(
-        duration: const Duration(milliseconds: 1000),
-        firstChild: const BmiInfoWidget(),
-        secondChild: widget.isBmiCalculated
-            ? BmiResultWidget(bmi: widget.bmiResult!)
-            : const SizedBox(),
-        crossFadeState: !widget.isBmiCalculated
-            ? CrossFadeState.showFirst
-            : CrossFadeState.showSecond,
-      );
-    }
-
-    Widget _buildBody() {
-      final double deviceHeight = MediaQuery.of(context).size.height;
-      final double deviceWidth = MediaQuery.of(context).size.width;
-
-      return Container(
-        decoration: kMainContainerDecoration,
-        height: deviceHeight < 632 ? 632 : double.infinity,
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: deviceWidth / 12),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(height: 20),
-                    _buildGenderText(),
-                    _buildGenderButtons(),
-                    _buildHeightText(),
-                    _buildHeightSlider(),
-                    _buildWeightText(),
-                    _buildWeightSlider(),
-                  ],
-                ),
-              ),
-            ),
-            Stack(
-              alignment: Alignment.topRight,
-              children: <Widget>[
-                const CurvesWidget(),
-                _buildBottomContent(),
-                _buildActionButton(),
-              ],
-            ),
-          ],
-        ),
-      );
-    }
+    final state = ref.watch(bmiProvider);
+    state.when(
+      initial: () => isBmiCalculated = false,
+      calculated: (bmi) {
+        bmiResult = bmi;
+        isBmiCalculated = true;
+      },
+    );
 
     return Scaffold(
       appBar: _buildAppBar(),
