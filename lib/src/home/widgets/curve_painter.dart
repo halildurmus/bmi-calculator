@@ -8,9 +8,9 @@ class CurvePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint();
-    paint.color = color;
-    paint.style = PaintingStyle.fill;
+    final Paint paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
 
     final Path path1 = Path();
     path1.moveTo(0, size.height * .35);
@@ -33,18 +33,12 @@ class CurvePainter extends CustomPainter {
     path3.lineTo(size.width, size.height);
     path3.lineTo(0, size.height);
 
-    switch (pathNo) {
-      case 1:
-        canvas.drawPath(path1, paint);
-        break;
-      case 2:
-        canvas.drawPath(path2, paint);
-        break;
-      case 3:
-        canvas.drawPath(path3, paint);
-        break;
-      default:
-        canvas.drawPath(path1, paint);
+    if (pathNo == 1) {
+      canvas.drawPath(path1, paint);
+    } else if (pathNo == 2) {
+      canvas.drawPath(path2, paint);
+    } else if (pathNo == 3) {
+      canvas.drawPath(path3, paint);
     }
   }
 

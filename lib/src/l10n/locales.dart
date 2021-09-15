@@ -11,12 +11,13 @@ const Map<String, Locale> _locales = <String, Locale>{
 ///
 /// e.g. If the given [localeString] is `en-US` then `Locale('en', 'US')` will
 /// be returned.
-Locale getLocale(String localeString) => _locales[localeString] ?? enUS;
+Locale getLocaleFromString(String localeString) =>
+    _locales[localeString] ?? enUS;
 
 /// Returns the supported locales.
 ///
 /// At the moment, supported locales are `en_US` and `tr_TR`.
-const List<Locale> supportedLocales = <Locale>[
+const List<Locale> kSupportedLocales = <Locale>[
   enUS,
   trTR,
 ];

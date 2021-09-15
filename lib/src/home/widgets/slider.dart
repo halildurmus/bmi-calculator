@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
 // Displays the slider value inside the thumb shape by overriding paint().
 class _CustomSliderThumbCircle extends SliderComponentShape {
   const _CustomSliderThumbCircle({
@@ -110,22 +108,9 @@ class _CustomSliderState extends State<CustomSlider> {
   Widget build(BuildContext context) {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
-        showValueIndicator: ShowValueIndicator.always,
-        valueIndicatorColor: const Color(0xFFF6CFD5).withOpacity(0.3),
-        valueIndicatorShape: const RectangularSliderValueIndicatorShape(),
-        valueIndicatorTextStyle: TextStyle(
-          color: kInactiveButtonTextColor,
-          fontSize: 15.0,
-          fontWeight: FontWeight.w500,
-        ),
-        trackHeight: 7.0,
         trackShape: _CustomTrackShape(),
-        inactiveTrackColor: const Color(0xFFF6CFD5).withOpacity(0.3),
-        activeTrackColor: Colors.white,
-        thumbColor: Colors.white,
-        overlayColor: Colors.white.withOpacity(0.2),
         thumbShape: _CustomSliderThumbCircle(
-          thumbRadius: 16.0,
+          thumbRadius: 16,
           min: widget.min,
           max: widget.max,
         ),
