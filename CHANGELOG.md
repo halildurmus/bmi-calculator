@@ -1,8 +1,16 @@
+## 3.0.0
+
+- Refactor the whole app
+- Refactor localization
+- Bump dependencies
+- Override toString() in Bmi class
+- Use flutter_lints package for linter
+
 ## 2.0.0
 
-- Migrate to null safety (#2) 
-- Refactor the whole app (#2)
-- Add support for changing app language from inside the app (#2) 
+- Migrate to null safety
+- Refactor the whole app
+- Add support for changing app language from inside the app
 
 ## 1.0.0
 
