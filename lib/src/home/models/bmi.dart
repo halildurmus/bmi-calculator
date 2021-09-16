@@ -70,4 +70,11 @@ class Bmi {
 
     return Colors.orange;
   }
+
+  @override
+  String toString() {
+    return 'Bmi{height: $height, weight: $weight, bmi: $bmi, '
+        'bmiAsString: $bmiAsString, wholeNumber: $wholeNumber, '
+        'decimalPart: $decimalPart}';
+  }
 }
