@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart' show Locale;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../l10n/locales.dart';
-
 /// A service used for storing and retrieving user settings.
 ///
 /// This service persist the user settings locally, using the
@@ -19,10 +17,10 @@ class SettingsService {
   ///
   /// If the preferred language is not found then [Platform.localeName] is used.
   Future<Locale> locale() async {
-    final String languageTag = prefs.getString(_languageKey) ??
-        Platform.localeName.replaceFirst('_', '-');
+    final String languageTag =
+        prefs.getString(_languageKey) ?? Platform.localeName.split('_')[0];
 
-    return getLocaleFromString(languageTag);
+    return Locale(languageTag);
   }
 
   /// Persists the user's preferred language to local storage.
