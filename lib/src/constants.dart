@@ -1,9 +1,15 @@
+import 'dart:ui' show Locale;
+
 import 'package:flutter/material.dart';
+
+// Locales
+const Locale kLocaleEnglish = Locale('en');
+const Locale kLocaleTurkish = Locale('tr');
 
 // Assets
 const String kBmiChartImage = 'assets/images/bmi-chart.png';
-const String kEnglishSvg = 'assets/icons/en-US.svg';
-const String kTurkishSvg = 'assets/icons/tr-TR.svg';
+const String kEnglishSvg = 'assets/icons/en.svg';
+const String kTurkishSvg = 'assets/icons/tr.svg';
 
 // Colors
 const Color kPrimaryColor = Color(0xFFCA4F5D);

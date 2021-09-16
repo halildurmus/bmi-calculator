@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
-import '../l10n/app_localizations.dart';
-import '../l10n/locales.dart' as locales;
 import '../settings/settings.controller.dart';
 import 'models/bmi.dart';
 import 'models/bmi_view_model.dart';
@@ -48,7 +47,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final TextTheme textTheme = theme.textTheme;
 
     String getLanguageSvg() {
-      if (controller.locale.toLanguageTag() == locales.trTR.toLanguageTag()) {
+      if (controller.locale == kLocaleTurkish) {
         return kTurkishSvg;
       }
 
@@ -58,18 +57,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     Widget _buildPopupMenuButton() {
       return PopupMenuButton<Locale>(
         icon: SvgPicture.asset(getLanguageSvg()),
-        onSelected: (Locale result) {
-          if (controller.locale != result) {
-            if (result == locales.enUS) {
-              controller.updateLocale(locales.enUS);
-            } else if (result == locales.trTR) {
-              controller.updateLocale(locales.trTR);
-            }
+        onSelected: (Locale locale) {
+          if (controller.locale != locale) {
+            controller.updateLocale(locale);
           }
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<Locale>>[
           PopupMenuItem<Locale>(
-            value: locales.enUS,
+            value: kLocaleEnglish,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -81,13 +76,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.locale == locales.enUS)
+                if (controller.locale == kLocaleEnglish)
                   Icon(Icons.check, color: theme.primaryColor)
               ],
             ),
           ),
           PopupMenuItem<Locale>(
-            value: locales.trTR,
+            value: kLocaleTurkish,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -99,7 +94,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.locale == locales.trTR)
+                if (controller.locale == kLocaleTurkish)
                   Icon(Icons.check, color: theme.primaryColor)
               ],
             ),

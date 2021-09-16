@@ -1,9 +1,9 @@
 import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants.dart';
-import '../../l10n/app_localizations.dart';
 
 class BmiChartWidget extends StatelessWidget {
   const BmiChartWidget({Key? key}) : super(key: key);
