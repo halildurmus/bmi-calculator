@@ -24,17 +24,6 @@ const List<Color> kContainerGradientColors = <Color>[
 ];
 
 // Decorations
-final BoxDecoration kAppBarDecoration = BoxDecoration(
-  shape: BoxShape.circle,
-  boxShadow: <BoxShadow>[
-    BoxShadow(
-      color: kPrimaryColor.withOpacity(.4),
-      blurRadius: 6,
-      offset: const Offset(.0, 2),
-    ),
-  ],
-);
-
 final BoxDecoration kActionButtonDecoration = BoxDecoration(
   shape: BoxShape.circle,
   boxShadow: <BoxShadow>[

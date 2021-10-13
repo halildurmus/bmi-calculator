@@ -103,19 +103,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       );
     }
 
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(kToolbarHeight),
-      child: DecoratedBox(
-        decoration: kAppBarDecoration,
-        child: AppBar(
-          key: const ValueKey<String>('AppBar'),
-          backgroundColor: Colors.white,
-          actions: <Widget>[_buildPopupMenuButton()],
-          title: Text(
-            AppLocalizations.of(context)!.title,
-            style: kAppBarTextStyle,
-          ),
-        ),
+    return AppBar(
+      key: const ValueKey<String>('AppBar'),
+      actions: <Widget>[_buildPopupMenuButton()],
+      backgroundColor: Colors.white,
+      title: Text(
+        AppLocalizations.of(context)!.title,
+        style: kAppBarTextStyle,
       ),
     );
   }
