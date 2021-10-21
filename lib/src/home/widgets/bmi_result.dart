@@ -12,8 +12,8 @@ class BmiResultWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ThemeData theme = Theme.of(context);
-    final TextTheme textTheme = theme.textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
     Widget _buildYourBmiText() {
       return Text(
@@ -84,13 +84,17 @@ class BmiResultWidget extends ConsumerWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 140, 24, 0),
+      padding: const EdgeInsets.fromLTRB(24, 110, 24, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[_buildYourBmiText(), _buildBmiChartButton()],
+            children: [
+              _buildYourBmiText(),
+              _buildBmiChartButton(),
+            ],
           ),
           _buildBmiValue(),
           const SizedBox(height: 10),

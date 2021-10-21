@@ -6,8 +6,7 @@ class BmiInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final TextTheme textTheme = theme.textTheme;
+    final textTheme = Theme.of(context).textTheme;
 
     Widget _buildFirstText() {
       return Text(
@@ -34,11 +33,11 @@ class BmiInfoWidget extends StatelessWidget {
       );
     }
 
-    return Padding(
-      padding: const EdgeInsets.only(top: 170),
-      child: Center(
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 155),
         child: Column(
-          children: <Widget>[
+          children: [
             _buildFirstText(),
             _buildSecondText(),
           ],
