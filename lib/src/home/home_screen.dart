@@ -10,7 +10,7 @@ import 'models/bmi_view_model.dart';
 import 'models/gender.dart';
 import 'widgets/bmi_info.dart';
 import 'widgets/bmi_result.dart';
-import 'widgets/curves.dart';
+import 'widgets/curve_painter.dart';
 import 'widgets/gender_toggle_button.dart';
 import 'widgets/slider.dart';
 
@@ -237,6 +237,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
+Widget _buildWaves() {
+  final deviceSize = MediaQuery.of(context).size;
+
+  return SizedBox(
+      height: .35 * deviceSize.height,
+      width: deviceSize.width,
+      child: const CustomPaint(
+        painter: CurvePainter(),
+      ),
+    );
+}
+
   Widget _buildBottomContent() {
     return AnimatedCrossFade(
       duration: const Duration(milliseconds: 1000),
@@ -279,8 +291,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           Stack(
             alignment: Alignment.topRight,
-            children: <Widget>[
-              const CurvesWidget(),
+            children: [
+              _buildWaves(),
               _buildBottomContent(),
               _buildActionButton(),
             ],
