@@ -10,7 +10,7 @@ import 'models/bmi_view_model.dart';
 import 'models/gender.dart';
 import 'widgets/bmi_info.dart';
 import 'widgets/bmi_result.dart';
-import 'widgets/curve_painter.dart';
+import 'widgets/wave_painter.dart';
 import 'widgets/gender_toggle_button.dart';
 import 'widgets/slider.dart';
 
@@ -237,41 +237,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-Widget _buildWaves() {
-  final deviceSize = MediaQuery.of(context).size;
-
-  return SizedBox(
-      height: .35 * deviceSize.height,
-      width: deviceSize.width,
-      child: const CustomPaint(
-        painter: CurvePainter(),
-      ),
-    );
-}
-
   Widget _buildBottomContent() {
-    return AnimatedCrossFade(
-      duration: const Duration(milliseconds: 1000),
-      firstChild: const BmiInfoWidget(),
-      secondChild:
-          isBmiCalculated ? BmiResultWidget(bmi: bmiResult) : const SizedBox(),
-      crossFadeState: !isBmiCalculated
-          ? CrossFadeState.showFirst
-          : CrossFadeState.showSecond,
+    return CustomPaint(
+      painter: const WavePainter(),
+      child: AnimatedCrossFade(
+        duration: const Duration(milliseconds: 1000),
+        firstChild: const BmiInfoWidget(),
+        secondChild: isBmiCalculated
+            ? BmiResultWidget(bmi: bmiResult)
+            : const SizedBox(),
+        crossFadeState: !isBmiCalculated
+            ? CrossFadeState.showFirst
+            : CrossFadeState.showSecond,
+      ),
     );
   }
 
   Widget _buildBody() {
-    final double deviceHeight = MediaQuery.of(context).size.height;
-    final double deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
 
     return Container(
       decoration: kMainContainerDecoration,
-      height: deviceHeight < 632 ? 632 : double.infinity,
-      width: double.infinity,
+      height: deviceHeight < 650 ? 650 : deviceHeight,
+      width: deviceWidth,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
+        children: [
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: deviceWidth / 12),
@@ -289,13 +281,15 @@ Widget _buildWaves() {
               ),
             ),
           ),
-          Stack(
-            alignment: Alignment.topRight,
-            children: [
-              _buildWaves(),
-              _buildBottomContent(),
-              _buildActionButton(),
-            ],
+          SizedBox(
+            height: 250,
+            child: Stack(
+              alignment: Alignment.topRight,
+              children: [
+                _buildBottomContent(),
+                _buildActionButton(),
+              ],
+            ),
           ),
         ],
       ),
@@ -317,7 +311,7 @@ Widget _buildWaves() {
 
     return Scaffold(
       appBar: _buildAppBar(),
-      body: deviceHeight < 632
+      body: deviceHeight < 650
           ? SingleChildScrollView(child: _buildBody())
           : _buildBody(),
     );

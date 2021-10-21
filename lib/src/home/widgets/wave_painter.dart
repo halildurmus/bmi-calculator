@@ -7,8 +7,8 @@ class _Wave {
   final Path path;
 }
 
-class CurvePainter extends CustomPainter {
-  const CurvePainter();
+class WavePainter extends CustomPainter {
+  const WavePainter();
 
   static const List<Color> _kColors = [
     Color(0xFFEE7583),
