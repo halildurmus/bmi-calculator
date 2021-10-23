@@ -10,9 +10,9 @@ import 'models/bmi_view_model.dart';
 import 'models/gender.dart';
 import 'widgets/bmi_info.dart';
 import 'widgets/bmi_result.dart';
-import 'widgets/wave_painter.dart';
 import 'widgets/gender_toggle_button.dart';
 import 'widgets/slider.dart';
+import 'widgets/wave_painter.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key, required this.settingsController})
@@ -256,7 +256,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget _buildBody() {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
-
+   
     return Container(
       decoration: kMainContainerDecoration,
       height: deviceHeight < 650 ? 650 : deviceHeight,
