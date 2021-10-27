@@ -3,48 +3,45 @@ import 'dart:ui' show Locale;
 import 'package:flutter/material.dart';
 
 // Locales
-const Locale kLocaleEnglish = Locale('en');
-const Locale kLocaleTurkish = Locale('tr');
+const localeEnglish = Locale('en');
+const localeTurkish = Locale('tr');
 
 // Assets
-const String kBmiChartImage = 'assets/images/bmi-chart.png';
-const String kEnglishSvg = 'assets/icons/en.svg';
-const String kTurkishSvg = 'assets/icons/tr.svg';
+const bmiChartImage = 'assets/images/bmi-chart.png';
+const englishSvg = 'assets/icons/en.svg';
+const turkishSvg = 'assets/icons/tr.svg';
 
 // Colors
-const Color kPrimaryColor = Color(0xFFCA4F5D);
-const Color kNormalBmiColor = Color(0xFF66BB6A);
-const Color kActiveButtonBgColor = Colors.white;
-const Color kActiveButtonTextColor = Color(0xFFCA4F5D);
-final Color kInactiveButtonBgColor = const Color(0xFFF6CFD5).withOpacity(.5);
-final Color kInactiveButtonTextColor = Colors.white.withOpacity(.7);
-const List<Color> kContainerGradientColors = <Color>[
-  Color(0xFFEA6B5D),
-  Color(0xFFE95263),
-];
+const primaryColor = Color(0xFFCA4F5D);
+const normalBmiColor = Color(0xFF66BB6A);
+const activeButtonBgColor = Colors.white;
+const activeButtonTextColor = Color(0xFFCA4F5D);
+final inactiveButtonBgColor = const Color(0xFFF6CFD5).withOpacity(.5);
+final inactiveButtonTextColor = Colors.white.withOpacity(.7);
+const containerGradientColors = <Color>[Color(0xFFEA6B5D), Color(0xFFE95263)];
 
 // Decorations
-final BoxDecoration kActionButtonDecoration = BoxDecoration(
+final actionButtonDecoration = BoxDecoration(
   shape: BoxShape.circle,
-  boxShadow: <BoxShadow>[
+  boxShadow: [
     BoxShadow(
-      color: kPrimaryColor.withOpacity(.4),
+      color: primaryColor.withOpacity(.4),
       blurRadius: 6,
       offset: const Offset(0, 2),
     ),
   ],
 );
 
-const BoxDecoration kMainContainerDecoration = BoxDecoration(
+const mainContainerDecoration = BoxDecoration(
   gradient: LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: kContainerGradientColors,
+    colors: containerGradientColors,
   ),
 );
 
 // Text Styles
-const TextStyle kAppBarTextStyle = TextStyle(
+const appBarTextStyle = TextStyle(
   color: Color(0xFFCA4F5D),
   fontSize: 22,
   fontWeight: FontWeight.w900,

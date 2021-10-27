@@ -7,58 +7,52 @@ import '../models/gender.dart';
 class GenderToggleButton extends StatelessWidget {
   const GenderToggleButton({
     Key? key,
+    required this.valueKey,
     required this.gender,
     required this.selectedGender,
-    required this.valueKey,
     this.onTap,
     required this.text,
   }) : super(key: key);
 
+  final ValueKey<String> valueKey;
   final Gender gender;
   final Gender selectedGender;
-  final ValueKey<String> valueKey;
   final void Function()? onTap;
   final String text;
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = selectedGender == gender
-        ? kActiveButtonBgColor
-        : kInactiveButtonBgColor;
+    final Color backgroundColor =
+        selectedGender == gender ? activeButtonBgColor : inactiveButtonBgColor;
 
     final Color textColor = selectedGender == gender
-        ? kActiveButtonTextColor
-        : kInactiveButtonTextColor;
+        ? activeButtonTextColor
+        : inactiveButtonTextColor;
 
     return ElevatedButton(
       key: valueKey,
       onPressed: onTap,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return Colors.white38;
-            }
-
-            return backgroundColor;
-          },
+          (states) => states.contains(MaterialState.disabled)
+              ? Colors.white38
+              : backgroundColor,
         ),
         elevation: MaterialStateProperty.resolveWith<double?>(
-          (Set<MaterialState> states) => 0,
+          (states) => 0,
         ),
         padding: MaterialStateProperty.resolveWith<EdgeInsets?>(
-          (Set<MaterialState> states) =>
-              const EdgeInsets.symmetric(vertical: 10),
+          (states) => const EdgeInsets.symmetric(vertical: 10),
         ),
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
-          (Set<MaterialState> states) => RoundedRectangleBorder(
+          (states) => RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Icon(
             gender == Gender.male
                 ? FontAwesomeIcons.mars

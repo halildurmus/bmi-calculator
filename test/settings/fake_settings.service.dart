@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// A fake [SettingsService] implementation that used in testing.
 class FakeSettingsService implements SettingsService {
   @override
-  SharedPreferences get prefs => throw UnimplementedError();
+  SharedPreferences get _prefs => throw UnimplementedError();
 
   @override
   Future<Locale> locale() async {

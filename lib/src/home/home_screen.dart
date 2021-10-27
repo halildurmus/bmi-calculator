@@ -25,7 +25,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  Gender _selectedGender = Gender.male;
+  Gender selectedGender = Gender.male;
   int height = 170;
   int weight = 65;
   bool isBmiCalculated = false;
@@ -47,11 +47,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final TextTheme textTheme = theme.textTheme;
 
     String getLanguageSvg() {
-      if (controller.locale == kLocaleTurkish) {
-        return kTurkishSvg;
+      if (controller.locale == localeTurkish) {
+        return turkishSvg;
       }
 
-      return kEnglishSvg;
+      return englishSvg;
     }
 
     Widget _buildPopupMenuButton() {
@@ -62,39 +62,39 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             controller.updateLocale(locale);
           }
         },
-        itemBuilder: (BuildContext context) => <PopupMenuEntry<Locale>>[
+        itemBuilder: (context) => <PopupMenuEntry<Locale>>[
           PopupMenuItem<Locale>(
-            value: kLocaleEnglish,
+            value: localeEnglish,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
+              children: [
                 Row(
-                  children: <Widget>[
-                    SvgPicture.asset(kEnglishSvg, height: 20, width: 20),
+                  children: [
+                    SvgPicture.asset(englishSvg, height: 20, width: 20),
                     const SizedBox(width: 8),
                     Text(AppLocalizations.of(context)!.english,
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.locale == kLocaleEnglish)
+                if (controller.locale == localeEnglish)
                   Icon(Icons.check, color: theme.primaryColor)
               ],
             ),
           ),
           PopupMenuItem<Locale>(
-            value: kLocaleTurkish,
+            value: localeTurkish,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
+              children: [
                 Row(
-                  children: <Widget>[
-                    SvgPicture.asset(kTurkishSvg, height: 20, width: 20),
+                  children: [
+                    SvgPicture.asset(turkishSvg, height: 20, width: 20),
                     const SizedBox(width: 8),
                     Text(AppLocalizations.of(context)!.turkish,
                         style: textTheme.bodyText2),
                   ],
                 ),
-                if (controller.locale == kLocaleTurkish)
+                if (controller.locale == localeTurkish)
                   Icon(Icons.check, color: theme.primaryColor)
               ],
             ),
@@ -105,12 +105,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return AppBar(
       key: const ValueKey<String>('AppBar'),
-      actions: <Widget>[_buildPopupMenuButton()],
+      actions: [_buildPopupMenuButton()],
       backgroundColor: Colors.white,
-      title: Text(
-        AppLocalizations.of(context)!.title,
-        style: kAppBarTextStyle,
-      ),
+      title: Text(AppLocalizations.of(context)!.title, style: appBarTextStyle),
     );
   }
 
@@ -123,12 +120,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       onTap: !isBmiCalculated
           ? () {
               setState(() {
-                _selectedGender = gender;
+                selectedGender = gender;
               });
             }
           : null,
       gender: gender,
-      selectedGender: _selectedGender,
+      selectedGender: selectedGender,
       text: title,
     );
   }
@@ -220,7 +217,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Padding(
       padding: EdgeInsets.only(right: MediaQuery.of(context).size.width / 12),
       child: DecoratedBox(
-        decoration: kActionButtonDecoration,
+        decoration: actionButtonDecoration,
         child: FloatingActionButton.large(
           onPressed: isBmiCalculated
               ? () => _resetBmi(context, ref)
@@ -254,22 +251,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget _buildBody() {
-    final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
-   
+    final deviceSize = MediaQuery.of(context).size;
+
     return Container(
-      decoration: kMainContainerDecoration,
-      height: deviceHeight < 650 ? 650 : deviceHeight,
-      width: deviceWidth,
+      decoration: mainContainerDecoration,
+      height: deviceSize.height < 650 ? 650 : deviceSize.height,
+      width: deviceSize.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: deviceWidth / 12),
+              padding: EdgeInsets.symmetric(horizontal: deviceSize.width / 12),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: [
                   const SizedBox(height: 20),
                   _buildGenderText(),
                   _buildGenderButtons(),

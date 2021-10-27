@@ -65,7 +65,7 @@ class Bmi {
     if (bmi >= 25) {
       return Colors.red;
     } else if (bmi > 18.5) {
-      return kNormalBmiColor;
+      return normalBmiColor;
     }
 
     return Colors.orange;

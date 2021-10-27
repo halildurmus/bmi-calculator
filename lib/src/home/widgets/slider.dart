@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 // Displays the slider value inside the thumb shape by overriding paint().
 class _CustomSliderThumbCircle extends SliderComponentShape {
   const _CustomSliderThumbCircle({
-    required this.thumbRadius,
     required this.min,
     required this.max,
+    required this.thumbRadius,
   });
 
-  final double thumbRadius;
   final double min;
   final double max;
+  final double thumbRadius;
 
   @override
-  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return Size.fromRadius(thumbRadius);
-  }
+  Size getPreferredSize(bool isEnabled, bool isDiscrete) =>
+      Size.fromRadius(thumbRadius);
 
   @override
   void paint(
@@ -32,13 +31,11 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    final Canvas canvas = context.canvas;
-
-    final Paint paint = Paint()
+    final canvas = context.canvas;
+    final paint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.fill;
-
-    final TextSpan span = TextSpan(
+    final span = TextSpan(
       style: TextStyle(
         fontSize: thumbRadius * .75,
         fontWeight: FontWeight.w500,
@@ -46,22 +43,21 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
       ),
       text: getValue(value),
     );
-
-    final TextPainter tp = TextPainter(
-        text: span,
-        textAlign: TextAlign.center,
-        textDirection: TextDirection.ltr);
+    final tp = TextPainter(
+      text: span,
+      textAlign: TextAlign.center,
+      textDirection: TextDirection.ltr,
+    );
     tp.layout();
-    final Offset textCenter =
+    final textCenter =
         Offset(center.dx - (tp.width / 2), center.dy - (tp.height / 2));
 
     canvas.drawCircle(center, thumbRadius * .9, paint);
     tp.paint(canvas, textCenter);
   }
 
-  String getValue(double value) {
-    return (((max - min) * value) + min).round().toString();
-  }
+  String getValue(double value) =>
+      (((max - min) * value) + min).round().toString();
 }
 
 // Removes extra padding around the track by overriding getPreferredRect().

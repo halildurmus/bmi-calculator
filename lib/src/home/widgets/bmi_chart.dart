@@ -10,8 +10,8 @@ class BmiChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final TextTheme textTheme = theme.textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
     Widget _buildBmiChartText() {
       return Text(
@@ -39,8 +39,8 @@ class BmiChartWidget extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(24.0),
-            topRight: Radius.circular(24.0),
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
           color: Colors.white,
         ),
@@ -49,9 +49,9 @@ class BmiChartWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
+            children: [
               _buildBmiChartText(),
-              Image.asset(kBmiChartImage),
+              Image.asset(bmiChartImage),
               _buildCloseButton(),
             ],
           ),

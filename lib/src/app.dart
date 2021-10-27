@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: settingsController,
-      builder: (BuildContext context, Widget? child) {
+      builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           locale: settingsController.locale,
@@ -25,8 +25,7 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          onGenerateTitle: (BuildContext context) =>
-              AppLocalizations.of(context)!.title,
+          onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: lightTheme(context),
           home: HomeScreen(settingsController: settingsController),

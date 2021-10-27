@@ -36,7 +36,7 @@ class BmiResultWidget extends ConsumerWidget {
           );
         },
         child: Row(
-          children: <Widget>[
+          children: [
             Text(
               AppLocalizations.of(context)!.theBmiChart,
               style: textTheme.bodyText1!.copyWith(
@@ -55,7 +55,7 @@ class BmiResultWidget extends ConsumerWidget {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         textBaseline: TextBaseline.alphabetic,
-        children: <Widget>[
+        children: [
           Text(
             bmi.wholeNumber,
             style: textTheme.headline3!.copyWith(color: theme.primaryColor),

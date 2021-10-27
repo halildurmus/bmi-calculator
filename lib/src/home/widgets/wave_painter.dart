@@ -5,12 +5,15 @@ class _Wave {
 
   final Color color;
   final Path path;
+
+  @override
+  String toString() => '_Wave(color: $color, path: $path)';
 }
 
 class WavePainter extends CustomPainter {
   const WavePainter();
 
-  static const List<Color> _kColors = [
+  static const _colors = <Color>[
     Color(0xFFEE7583),
     Color(0xFFF6ABB2),
     Colors.white
@@ -25,7 +28,7 @@ class WavePainter extends CustomPainter {
     path.lineTo(size.width, height);
     path.lineTo(0, height);
 
-    return _Wave(color: _kColors[0], path: path);
+    return _Wave(color: _colors[0], path: path);
   }
 
   _Wave _getSecondWave(Size size) {
@@ -37,7 +40,7 @@ class WavePainter extends CustomPainter {
     path.lineTo(size.width, height);
     path.lineTo(0, height);
 
-    return _Wave(color: _kColors[1], path: path);
+    return _Wave(color: _colors[1], path: path);
   }
 
   _Wave _getThirdWave(Size size) {
@@ -49,7 +52,7 @@ class WavePainter extends CustomPainter {
     path.lineTo(size.width, height);
     path.lineTo(0, height);
 
-    return _Wave(color: _kColors[2], path: path);
+    return _Wave(color: _colors[2], path: path);
   }
 
   @override
