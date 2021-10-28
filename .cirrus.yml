@@ -1,18 +1,17 @@
 container:
   image: cirrusci/flutter:stable
+pub_cache:
+  folder: ~/.pub-cache
   
-analyze_task:
-  pub_cache:
-    folder: ~/.pub-cache
+task:
+  name: Run analyzer
   analyze_script: flutter analyze
 
-build_task:
-  pub_cache:
-    folder: ~/.pub-cache
+task:
+  name: Build app (Android)
   build_script:
     - flutter build apk --debug
 
-test_task:
-  pub_cache:
-    folder: ~/.pub-cache
+task:
+  name: Run tests
   test_script: flutter test
