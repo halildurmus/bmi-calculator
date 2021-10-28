@@ -1,11 +1,10 @@
 container:
   image: cirrusci/flutter:stable
   
-test_task:
+analyze_task:
   pub_cache:
     folder: ~/.pub-cache
-  test_script: flutter test
-
+  analyze_script: flutter analyze
 
 build_task:
   pub_cache:
@@ -15,3 +14,8 @@ build_task:
   artifacts:
     paths:
       - build/app/outputs/apk/release/app-release.apk
+
+test_task:
+  pub_cache:
+    folder: ~/.pub-cache
+  test_script: flutter test
