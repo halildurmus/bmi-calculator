@@ -1,5 +1,6 @@
 container:
   image: cirrusci/flutter:stable
+  
 test_task:
   pub_cache:
     folder: ~/.pub-cache
@@ -14,4 +15,3 @@ build_task:
   artifacts:
     paths:
       - build/app/outputs/apk/release/app-release.apk
-
