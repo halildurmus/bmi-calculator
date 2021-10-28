@@ -9,11 +9,8 @@ analyze_task:
 build_task:
   pub_cache:
     folder: ~/.pub-cache
-  script:
-    - flutter build apk
-  artifacts:
-    paths:
-      - build/app/outputs/apk/release/app-release.apk
+  build_script:
+    - flutter build apk --debug
 
 test_task:
   pub_cache:
