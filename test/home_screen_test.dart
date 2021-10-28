@@ -10,19 +10,17 @@ import 'settings/fake_settings.service.dart';
 void main() {
   testWidgets('Home screen should properly display the widgets',
       (WidgetTester tester) async {
-    // Sets up the SettingsController, which will glue user settings to multiple
-    // Flutter Widgets.
+    // Sets up the SettingsController with the FakeSettingsService.
     final SettingsController settingsController =
         SettingsController(FakeSettingsService());
 
-    // Loads the user's preferred settings while the splash screen is displayed.
+    // Loads the user's preferred settings before the app is rendered.
     await settingsController.loadSettings();
 
-    // Build our app and trigger a frame.
+    // Build the MyApp widget.
     await tester.pumpWidget(
       ProviderScope(child: MyApp(settingsController: settingsController)),
     );
-    await tester.pump();
 
     expect(find.byKey(const ValueKey<String>('AppBar')), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('Gender.male')), findsOneWidget);
@@ -33,7 +31,9 @@ void main() {
     expect(find.byKey(const ValueKey<String>('BmiInfoFirst')), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('BmiInfoSecond')), findsOneWidget);
 
+    // Tap into the FAB to get the BMI result.
     await tester.tap(find.byType(FloatingActionButton));
+    // Wait for the animation to complete.
     await tester.pumpAndSettle();
 
     expect(
