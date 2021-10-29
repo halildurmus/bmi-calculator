@@ -1,6 +1,6 @@
 # Contributing
 
-_See also: [BMI Calculator's code of conduct](https://github.com/ibrahim39/bmi_calculator/blob/master/CODE_OF_CONDUCT.md)_
+_See also: [BMI Calculator's code of conduct](https://github.com/halildurmus/bmi_calculator/blob/master/CODE_OF_CONDUCT.md)_
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
@@ -13,7 +13,7 @@ Use your best judgment, and feel free to propose changes to this document in a p
 Make sure you have <b>Flutter</b> installed and on your path.
 
 Follow these steps to clone <b>BMI Calculator</b> and set up the development environment:
-1. Clone the project: `git clone https://github.com/ibrahim39/bmi_calculator.git`
+1. Clone the project: `git clone https://github.com/halildurmus/bmi_calculator.git`
 2. Go into the cloned directory: `cd bmi_calculator`
 3. Install all packages: `flutter packages get`
 
@@ -21,7 +21,7 @@ Follow these steps to clone <b>BMI Calculator</b> and set up the development env
 
 ### File an issue first!
 
-If the work you intend to do is non-trivial, **it is necessary to [file an issue](https://github.com/ibrahim39/bmi_calculator/issues/new/choose) before starting writing your code**. 
+If the work you intend to do is non-trivial, **it is necessary to [file an issue](https://github.com/halildurmus/bmi_calculator/issues/new/choose) before starting writing your code**. 
 This helps us and the community to discuss the issue and choose what is deemed to be the best solution.
 
 ### Checking your code's quality
