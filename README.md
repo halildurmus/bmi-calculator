@@ -2,10 +2,7 @@
 
 [![CirrusCI](https://img.shields.io/cirrus/github/halildurmus/bmi-calculator?style=for-the-badge)](https://cirrus-ci.com/halildurmus/bmi-calculator)
 ![GitHub top language](https://img.shields.io/github/languages/top/halildurmus/bmi-calculator?style=for-the-badge)
-[![GitHub contributors](https://img.shields.io/github/contributors-anon/halildurmus/bmi-calculator?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/graphs/contributors)
-[![GitHub issues](https://img.shields.io/github/issues/halildurmus/bmi-calculator?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/issues)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/blob/master/LICENSE)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&labelColor=blue&style=for-the-badge)](https://linkedin.com/in/halildurmus)
 ![Visits](https://badges.pufler.dev/visits/halildurmus/bmi-calculator?style=for-the-badge)
 
 > **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.  
