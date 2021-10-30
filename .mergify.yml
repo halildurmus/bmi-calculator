@@ -9,8 +9,8 @@ pull_request_rules:
       merge:
         method: merge
       delete_head_branch: {}
-        
-        
+
+
   - name: Automatic merge when reviewed and CI passes
     conditions:
       - "#approved-reviews-by>=1"

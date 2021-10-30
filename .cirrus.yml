@@ -2,7 +2,7 @@ container:
   image: cirrusci/flutter:stable
 pub_cache:
   folder: ~/.pub-cache
-  
+
 task:
   name: Run analyzer
   analyze_script: flutter analyze
