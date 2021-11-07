@@ -36,6 +36,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "changeLanguage": "Dili Değiştir",
+  "@changeLanguage": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
   "english": "İngilizce",
   "@english": {
     "description": "",

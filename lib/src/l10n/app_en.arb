@@ -36,6 +36,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "changeLanguage": "Change Language",
+  "@changeLanguage": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
   "english": "English",
   "@english": {
     "description": "",
