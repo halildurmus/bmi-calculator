@@ -12,6 +12,7 @@ The app supports **English** and **Turkish** languages.
 
 ## Table of Contents
 
+* [Demo](#demo)
 * [Screenshots](#screenshots)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
@@ -23,6 +24,10 @@ The app supports **English** and **Turkish** languages.
 * [Author](#author)
 * [License](#-license)
 * [Acknowledgements](#acknowledgements)
+
+## Demo
+
+Check out the live demo [here](https://halildurmus.github.io/bmi-calculator).
 
 ## Screenshots
 
