@@ -41,9 +41,6 @@ class GenderToggleButton extends StatelessWidget {
         elevation: MaterialStateProperty.resolveWith<double?>(
           (states) => 0,
         ),
-        padding: MaterialStateProperty.resolveWith<EdgeInsets?>(
-          (states) => const EdgeInsets.symmetric(vertical: 10),
-        ),
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (states) => RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
@@ -60,7 +57,10 @@ class GenderToggleButton extends StatelessWidget {
             color: textColor,
           ),
           const SizedBox(width: 8),
-          Text(text, style: TextStyle(color: textColor, fontSize: 16)),
+          Text(
+            text,
+            style: TextStyle(color: textColor, fontSize: 16),
+          ),
         ],
       ),
     );
