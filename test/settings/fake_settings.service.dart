@@ -5,7 +5,6 @@ import 'package:flutter/material.dart' show Locale;
 
 /// A fake [SettingsService] implementation that used in testing.
 class FakeSettingsService implements SettingsService {
-
   @override
   Future<Locale> locale() async {
     final String languageCode = Platform.localeName.split('_')[0];
