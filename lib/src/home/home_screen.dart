@@ -57,6 +57,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     Widget _buildPopupMenuButton() {
       return PopupMenuButton<Locale>(
         icon: SvgPicture.asset(getLanguageSvg()),
+        tooltip: AppLocalizations.of(context)!.changeLanguage,
         onSelected: (Locale locale) {
           if (controller.locale != locale) {
             controller.updateLocale(locale);
@@ -111,19 +112,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
+  void _changeGender(Gender gender) {
+    if (isBmiCalculated) {
+      return;
+    }
+
+    setState(() {
+      selectedGender = gender;
+    });
+  }
+
   Widget _buildGenderToggleButton({
-    required String title,
     required Gender gender,
+    required String title,
   }) {
     return GenderToggleButton(
       valueKey: ValueKey<String>('$gender'),
-      onTap: !isBmiCalculated
-          ? () {
-              setState(() {
-                selectedGender = gender;
-              });
-            }
-          : null,
+      onTap: () => _changeGender(gender),
       gender: gender,
       selectedGender: selectedGender,
       text: title,
@@ -132,21 +137,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _buildGenderButtons() {
     return Padding(
-      padding: const EdgeInsets.only(top: 16, bottom: 16),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
           Expanded(
-            child: _buildGenderToggleButton(
-              title: AppLocalizations.of(context)!.male,
-              gender: Gender.male,
+            child: SizedBox(
+              height: 45,
+              child: _buildGenderToggleButton(
+                title: AppLocalizations.of(context)!.male,
+                gender: Gender.male,
+              ),
             ),
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: _buildGenderToggleButton(
-              title: AppLocalizations.of(context)!.female,
-              gender: Gender.female,
+            child: SizedBox(
+              height: 45,
+              child: _buildGenderToggleButton(
+                title: AppLocalizations.of(context)!.female,
+                gender: Gender.female,
+              ),
             ),
           ),
         ],
@@ -215,7 +226,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _buildActionButton() {
     return Padding(
-      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width / 12),
+      padding: const EdgeInsets.only(right: 32),
       child: DecoratedBox(
         decoration: actionButtonDecoration,
         child: FloatingActionButton.large(
@@ -253,48 +264,52 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget _buildBody() {
     final deviceSize = MediaQuery.of(context).size;
 
-    return Container(
-      decoration: mainContainerDecoration,
-      height: deviceSize.height < 650 ? 650 : deviceSize.height,
-      width: deviceSize.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: deviceSize.width / 12),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(minWidth: 375, maxWidth: 500),
+        decoration: mainContainerDecoration,
+        height: deviceSize.height < 700 ? 700 : deviceSize.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 16,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildGenderText(),
+                    _buildGenderButtons(),
+                    _buildHeightText(),
+                    _buildHeightSlider(),
+                    _buildWeightText(),
+                    _buildWeightSlider(),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 250,
+              child: Stack(
+                alignment: Alignment.topRight,
                 children: [
-                  const SizedBox(height: 20),
-                  _buildGenderText(),
-                  _buildGenderButtons(),
-                  _buildHeightText(),
-                  _buildHeightSlider(),
-                  _buildWeightText(),
-                  _buildWeightSlider(),
+                  _buildBottomContent(),
+                  _buildActionButton(),
                 ],
               ),
             ),
-          ),
-          SizedBox(
-            height: 250,
-            child: Stack(
-              alignment: Alignment.topRight,
-              children: [
-                _buildBottomContent(),
-                _buildActionButton(),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final double deviceHeight = MediaQuery.of(context).size.height;
+    final deviceHeight = MediaQuery.of(context).size.height;
 
     final state = ref.watch(bmiProvider);
     state.when(
@@ -307,7 +322,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return Scaffold(
       appBar: _buildAppBar(),
-      body: deviceHeight < 650
+      backgroundColor: primaryColor.withOpacity(.1),
+      body: deviceHeight < 700
           ? SingleChildScrollView(child: _buildBody())
           : _buildBody(),
     );
