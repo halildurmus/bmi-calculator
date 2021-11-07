@@ -21,5 +21,9 @@ Future<void> main() async {
   await settingsController.loadSettings();
 
   // Runs the app and pass in the SettingsController.
-  runApp(ProviderScope(child: MyApp(settingsController: settingsController)));
+  runApp(
+    ProviderScope(
+      child: MyApp(settingsController: settingsController),
+    ),
+  );
 }
