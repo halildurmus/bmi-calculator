@@ -35,7 +35,7 @@ class BmiInfoWidget extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 155),
+        padding: const EdgeInsets.only(top: 155, left: 16, right: 16),
         child: Column(
           children: [
             _buildFirstText(),
