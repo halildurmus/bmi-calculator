@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bmiInfoFirst": "Body mass index, or BMI, is used to determine whether\n you are in a healthy weight range for your height.",
+  "bmiInfoFirst": "Body mass index, or BMI, is used to determine whether you are in a healthy weight range for your height.",
   "@bmiInfoFirst": {
     "description": "",
     "type": "text",

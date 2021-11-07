@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bmiInfoFirst": "Vücut kitle indeksi veya BMI, boyunuza göre sağlıklı\n bir kilo aralığında olup olmadığınızı belirlemek için kullanılır.",
+  "bmiInfoFirst": "Vücut kitle indeksi veya BMI, boyunuza göre sağlıklı bir kilo aralığında olup olmadığınızı belirlemek için kullanılır.",
   "@bmiInfoFirst": {
     "description": "",
     "type": "text",
