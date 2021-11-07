@@ -33,6 +33,9 @@ final actionButtonDecoration = BoxDecoration(
 );
 
 const mainContainerDecoration = BoxDecoration(
+  boxShadow: [
+    BoxShadow(blurRadius: .5, color: primaryColor),
+  ],
   gradient: LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
