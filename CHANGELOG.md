@@ -1,3 +1,7 @@
+## 3.1.0
+
+- Added support for Web
+
 ## 3.0.0
 
 - Refactor the whole app
