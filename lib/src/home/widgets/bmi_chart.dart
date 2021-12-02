@@ -1,9 +1,9 @@
 import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants.dart';
+import '../../l10n/localization_util.dart';
 
 class BmiChartWidget extends StatelessWidget {
   const BmiChartWidget({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class BmiChartWidget extends StatelessWidget {
 
     Widget _buildBmiChartText() {
       return Text(
-        AppLocalizations.of(context)!.theBmiChart,
+        l(context).theBmiChart,
         style: textTheme.headline6!.copyWith(
           color: theme.primaryColor,
           fontWeight: FontWeight.bold,
@@ -28,7 +28,7 @@ class BmiChartWidget extends StatelessWidget {
         onPressed: () => Navigator.pop(context),
         style: TextButton.styleFrom(primary: theme.primaryColor),
         child: Text(
-          AppLocalizations.of(context)!.close,
+          l(context).close,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       );
@@ -51,7 +51,7 @@ class BmiChartWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _buildBmiChartText(),
-              Image.asset(bmiChartImage),
+              Image.asset(assetBmiChartImage),
               _buildCloseButton(),
             ],
           ),

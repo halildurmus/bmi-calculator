@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../l10n/localization_util.dart';
 import '../models/bmi.dart';
 import 'bmi_chart.dart';
 
@@ -17,7 +17,7 @@ class BmiResultWidget extends ConsumerWidget {
 
     Widget _buildYourBmiText() {
       return Text(
-        AppLocalizations.of(context)!.yourBmi,
+        l(context).yourBmi,
         style: textTheme.bodyText1!.copyWith(
           color: Colors.black.withOpacity(.55),
           fontSize: 13,
@@ -38,7 +38,7 @@ class BmiResultWidget extends ConsumerWidget {
         child: Row(
           children: [
             Text(
-              AppLocalizations.of(context)!.theBmiChart,
+              l(context).theBmiChart,
               style: textTheme.bodyText1!.copyWith(
                 color: theme.primaryColor,
                 fontSize: 12,

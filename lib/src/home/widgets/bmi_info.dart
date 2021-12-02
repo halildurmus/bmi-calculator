@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../l10n/localization_util.dart';
 
 class BmiInfoWidget extends StatelessWidget {
   const BmiInfoWidget({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class BmiInfoWidget extends StatelessWidget {
 
     Widget _buildFirstText() {
       return Text(
-        AppLocalizations.of(context)!.bmiInfoFirst,
+       l(context).bmiInfoFirst,
         key: const ValueKey<String>('BmiInfoFirst'),
         textAlign: TextAlign.center,
         style: textTheme.bodyText1!.copyWith(
@@ -22,7 +23,7 @@ class BmiInfoWidget extends StatelessWidget {
 
     Widget _buildSecondText() {
       return Text(
-        AppLocalizations.of(context)!.bmiInfoSecond,
+       l(context).bmiInfoSecond,
         key: const ValueKey<String>('BmiInfoSecond'),
         textAlign: TextAlign.center,
         style: textTheme.bodyText1!.copyWith(

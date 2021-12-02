@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
+import '../l10n/localization_util.dart';
 import '../settings/settings.controller.dart';
 import 'models/bmi.dart';
 import 'models/bmi_view_model.dart';
@@ -42,22 +42,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
-    final SettingsController controller = widget.settingsController;
-    final ThemeData theme = Theme.of(context);
-    final TextTheme textTheme = theme.textTheme;
-
-    String getLanguageSvg() {
-      if (controller.locale == localeTurkish) {
-        return turkishSvg;
-      }
-
-      return englishSvg;
-    }
+    final controller = widget.settingsController;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
     Widget _buildPopupMenuButton() {
       return PopupMenuButton<Locale>(
-        icon: SvgPicture.asset(getLanguageSvg()),
-        tooltip: AppLocalizations.of(context)!.changeLanguage,
+        icon: SvgPicture.asset(
+          LocalizationUtil.getAssetName(controller.locale),
+        ),
+        tooltip: l(context).changeLanguage,
         onSelected: (Locale locale) {
           if (controller.locale != locale) {
             controller.updateLocale(locale);
@@ -71,10 +65,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset(englishSvg, height: 20, width: 20),
+                    SvgPicture.asset(assetEnglish, height: 20, width: 20),
                     const SizedBox(width: 8),
-                    Text(AppLocalizations.of(context)!.english,
-                        style: textTheme.bodyText2),
+                    Text(
+                      l(context).english,
+                      style: textTheme.bodyText2,
+                    ),
                   ],
                 ),
                 if (controller.locale == localeEnglish)
@@ -89,10 +85,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset(turkishSvg, height: 20, width: 20),
+                    SvgPicture.asset(assetTurkish, height: 20, width: 20),
                     const SizedBox(width: 8),
-                    Text(AppLocalizations.of(context)!.turkish,
-                        style: textTheme.bodyText2),
+                    Text(
+                      l(context).turkish,
+                      style: textTheme.bodyText2,
+                    ),
                   ],
                 ),
                 if (controller.locale == localeTurkish)
@@ -108,7 +106,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       key: const ValueKey<String>('AppBar'),
       actions: [_buildPopupMenuButton()],
       backgroundColor: Colors.white,
-      title: Text(AppLocalizations.of(context)!.title, style: appBarTextStyle),
+      title: Text(l(context).title, style: appBarTextStyle),
     );
   }
 
@@ -145,7 +143,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: SizedBox(
               height: 45,
               child: _buildGenderToggleButton(
-                title: AppLocalizations.of(context)!.male,
+                title: l(context).male,
                 gender: Gender.male,
               ),
             ),
@@ -155,7 +153,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: SizedBox(
               height: 45,
               child: _buildGenderToggleButton(
-                title: AppLocalizations.of(context)!.female,
+                title: l(context).female,
                 gender: Gender.female,
               ),
             ),
@@ -167,14 +165,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _buildGenderText() {
     return Text(
-      AppLocalizations.of(context)!.gender,
+      l(context).gender,
       style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     );
   }
 
   Text _buildHeightText() {
     return Text(
-      AppLocalizations.of(context)!.height,
+      l(context).height,
       style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     );
   }
@@ -200,7 +198,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Text _buildWeightText() {
     return Text(
-      AppLocalizations.of(context)!.weight,
+      l(context).weight,
       style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     );
   }

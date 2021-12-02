@@ -2,14 +2,19 @@ import 'dart:ui' show Locale;
 
 import 'package:flutter/material.dart';
 
+// Assets
+const assetBmiChartImage = 'assets/images/bmi-chart.png';
+const assetEnglish = 'assets/icons/en.svg';
+const assetTurkish = 'assets/icons/tr.svg';
+
 // Locales
 const localeEnglish = Locale('en');
 const localeTurkish = Locale('tr');
 
-// Assets
-const bmiChartImage = 'assets/images/bmi-chart.png';
-const englishSvg = 'assets/icons/en.svg';
-const turkishSvg = 'assets/icons/tr.svg';
+final localeAssets = <Locale, String>{
+  localeEnglish: assetEnglish,
+  localeTurkish: assetTurkish,
+};
 
 // Colors
 const primaryColor = Color(0xFFCA4F5D);
