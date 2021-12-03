@@ -10,30 +10,6 @@ class BmiChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    Widget _buildBmiChartText() {
-      return Text(
-        l(context).theBmiChart,
-        style: textTheme.headline6!.copyWith(
-          color: theme.primaryColor,
-          fontWeight: FontWeight.bold,
-        ),
-      );
-    }
-
-    Widget _buildCloseButton() {
-      return TextButton(
-        onPressed: () => Navigator.pop(context),
-        style: TextButton.styleFrom(primary: theme.primaryColor),
-        child: Text(
-          l(context).close,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-      );
-    }
-
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Container(
@@ -50,12 +26,48 @@ class BmiChartWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
             children: [
-              _buildBmiChartText(),
+              const _BmiChartText(),
               Image.asset(assetBmiChartImage),
-              _buildCloseButton(),
+              const _CloseButton(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _BmiChartText extends StatelessWidget {
+  const _BmiChartText({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
+    return Text(
+      l(context).theBmiChart,
+      style: textTheme.headline6!.copyWith(
+        color: theme.primaryColor,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+}
+
+class _CloseButton extends StatelessWidget {
+  const _CloseButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return TextButton(
+      onPressed: () => Navigator.pop(context),
+      style: TextButton.styleFrom(primary: theme.primaryColor),
+      child: Text(
+        l(context).close,
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
     );
   }

@@ -16,15 +16,21 @@ class WavePainter extends CustomPainter {
   static const _colors = <Color>[
     Color(0xFFEE7583),
     Color(0xFFF6ABB2),
-    Colors.white
+    Colors.white,
   ];
 
   _Wave _getFirstWave(Size size) {
     final height = size.height * .7;
     final Path path = Path();
     path.moveTo(0, height * .35);
-    path.cubicTo(size.width * .25, height * .85, size.width * .75, -10,
-        size.width, height * .25);
+    path.cubicTo(
+      size.width * .25,
+      height * .85,
+      size.width * .75,
+      -10,
+      size.width,
+      height * .25,
+    );
     path.lineTo(size.width, height);
     path.lineTo(0, height);
 
@@ -35,8 +41,14 @@ class WavePainter extends CustomPainter {
     final height = size.height * .85;
     final Path path = Path();
     path.moveTo(0, height * .35);
-    path.cubicTo(size.width * .25, height * .75, size.width * .95, -15,
-        size.width, height * .5);
+    path.cubicTo(
+      size.width * .25,
+      height * .75,
+      size.width * .95,
+      -15,
+      size.width,
+      height * .5,
+    );
     path.lineTo(size.width, height);
     path.lineTo(0, height);
 
@@ -47,8 +59,14 @@ class WavePainter extends CustomPainter {
     final height = size.height;
     final Path path = Path();
     path.moveTo(0, height * .35);
-    path.cubicTo(size.width * .25, height * .7, size.width * .75, 10,
-        size.width, height * .33);
+    path.cubicTo(
+      size.width * .25,
+      height * .7,
+      size.width * .75,
+      10,
+      size.width,
+      height * .33,
+    );
     path.lineTo(size.width, height);
     path.lineTo(0, height);
 

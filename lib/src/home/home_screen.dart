@@ -15,8 +15,10 @@ import 'widgets/slider.dart';
 import 'widgets/wave_painter.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({Key? key, required this.settingsController})
-      : super(key: key);
+  const HomeScreen({
+    Key? key,
+    required this.settingsController,
+  }) : super(key: key);
 
   final SettingsController settingsController;
 
@@ -31,194 +33,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool isBmiCalculated = false;
   late Bmi bmiResult;
 
-  void _calculateBmi(BuildContext ctx, WidgetRef ref, int height, int weight) {
-    final model = ref.read(bmiProvider.notifier);
-    model.calculate(height: height, weight: weight);
-  }
+  @override
+  Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
 
-  void _resetBmi(BuildContext ctx, WidgetRef ref) {
-    final model = ref.read(bmiProvider.notifier);
-    model.reset();
-  }
-
-  PreferredSizeWidget _buildAppBar() {
-    final controller = widget.settingsController;
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    Widget _buildPopupMenuButton() {
-      return PopupMenuButton<Locale>(
-        icon: SvgPicture.asset(
-          LocalizationUtil.getAssetName(controller.locale),
-        ),
-        tooltip: l(context).changeLanguage,
-        onSelected: (Locale locale) {
-          if (controller.locale != locale) {
-            controller.updateLocale(locale);
-          }
-        },
-        itemBuilder: (context) => <PopupMenuEntry<Locale>>[
-          PopupMenuItem<Locale>(
-            value: localeEnglish,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(assetEnglish, height: 20, width: 20),
-                    const SizedBox(width: 8),
-                    Text(
-                      l(context).english,
-                      style: textTheme.bodyText2,
-                    ),
-                  ],
-                ),
-                if (controller.locale == localeEnglish)
-                  Icon(Icons.check, color: theme.primaryColor)
-              ],
-            ),
-          ),
-          PopupMenuItem<Locale>(
-            value: localeTurkish,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(assetTurkish, height: 20, width: 20),
-                    const SizedBox(width: 8),
-                    Text(
-                      l(context).turkish,
-                      style: textTheme.bodyText2,
-                    ),
-                  ],
-                ),
-                if (controller.locale == localeTurkish)
-                  Icon(Icons.check, color: theme.primaryColor)
-              ],
-            ),
-          ),
-        ],
-      );
-    }
-
-    return AppBar(
-      key: const ValueKey<String>('AppBar'),
-      actions: [_buildPopupMenuButton()],
-      backgroundColor: Colors.white,
-      title: Text(l(context).title, style: appBarTextStyle),
+    final state = ref.watch(bmiProvider);
+    state.when(
+      initial: () => isBmiCalculated = false,
+      calculated: (bmi) {
+        bmiResult = bmi;
+        isBmiCalculated = true;
+      },
     );
-  }
 
-  void _changeGender(Gender gender) {
-    if (isBmiCalculated) {
-      return;
-    }
-
-    setState(() {
-      selectedGender = gender;
-    });
-  }
-
-  Widget _buildGenderToggleButton({
-    required Gender gender,
-    required String title,
-  }) {
-    return GenderToggleButton(
-      valueKey: ValueKey<String>('$gender'),
-      onTap: () => _changeGender(gender),
-      gender: gender,
-      selectedGender: selectedGender,
-      text: title,
-    );
-  }
-
-  Widget _buildGenderButtons() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: SizedBox(
-              height: 45,
-              child: _buildGenderToggleButton(
-                title: l(context).male,
-                gender: Gender.male,
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: SizedBox(
-              height: 45,
-              child: _buildGenderToggleButton(
-                title: l(context).female,
-                gender: Gender.female,
-              ),
-            ),
-          ),
-        ],
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: _AppBar(settingsController: widget.settingsController),
       ),
-    );
-  }
-
-  Widget _buildGenderText() {
-    return Text(
-      l(context).gender,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    );
-  }
-
-  Text _buildHeightText() {
-    return Text(
-      l(context).height,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    );
-  }
-
-  Widget _buildHeightSlider() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 16),
-      child: CustomSlider(
-        min: 120,
-        max: 220,
-        measurementUnit: 'cm',
-        value: height,
-        onChanged: !isBmiCalculated
-            ? (double newValue) {
-                setState(() {
-                  height = newValue.round();
-                });
-              }
-            : null,
-      ),
-    );
-  }
-
-  Text _buildWeightText() {
-    return Text(
-      l(context).weight,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    );
-  }
-
-  Widget _buildWeightSlider() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 16),
-      child: CustomSlider(
-        min: 40,
-        max: 120,
-        measurementUnit: 'kg',
-        value: weight,
-        onChanged: !isBmiCalculated
-            ? (double newValue) {
-                setState(() {
-                  weight = newValue.round();
-                });
-              }
-            : null,
-      ),
+      backgroundColor: primaryColor.withOpacity(.1),
+      body: deviceHeight < 700
+          ? SingleChildScrollView(child: _buildBody())
+          : _buildBody(),
     );
   }
 
@@ -239,22 +75,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             size: 48,
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildBottomContent() {
-    return CustomPaint(
-      painter: const WavePainter(),
-      child: AnimatedCrossFade(
-        duration: const Duration(milliseconds: 1000),
-        firstChild: const BmiInfoWidget(),
-        secondChild: isBmiCalculated
-            ? BmiResultWidget(bmi: bmiResult)
-            : const SizedBox(),
-        crossFadeState: !isBmiCalculated
-            ? CrossFadeState.showFirst
-            : CrossFadeState.showSecond,
       ),
     );
   }
@@ -305,25 +125,217 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
+  Widget _buildBottomContent() {
+    return CustomPaint(
+      painter: const WavePainter(),
+      child: AnimatedCrossFade(
+        duration: const Duration(milliseconds: 1000),
+        firstChild: const BmiInfoWidget(),
+        secondChild: isBmiCalculated
+            ? BmiResultWidget(bmi: bmiResult)
+            : const SizedBox(),
+        crossFadeState: !isBmiCalculated
+            ? CrossFadeState.showFirst
+            : CrossFadeState.showSecond,
+      ),
+    );
+  }
+
+  Widget _buildGenderButtons() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: SizedBox(
+              height: 45,
+              child: _buildGenderToggleButton(
+                title: l(context).male,
+                gender: Gender.male,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: SizedBox(
+              height: 45,
+              child: _buildGenderToggleButton(
+                title: l(context).female,
+                gender: Gender.female,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGenderText() {
+    return Text(
+      l(context).gender,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    );
+  }
+
+  Widget _buildGenderToggleButton({
+    required Gender gender,
+    required String title,
+  }) {
+    return GenderToggleButton(
+      valueKey: ValueKey<String>('$gender'),
+      onTap: () => _changeGender(gender),
+      gender: gender,
+      selectedGender: selectedGender,
+      text: title,
+    );
+  }
+
+  Widget _buildHeightSlider() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 40, bottom: 16),
+      child: CustomSlider(
+        min: 120,
+        max: 220,
+        measurementUnit: 'cm',
+        value: height,
+        onChanged: !isBmiCalculated
+            ? (double newValue) {
+                setState(() {
+                  height = newValue.round();
+                });
+              }
+            : null,
+      ),
+    );
+  }
+
+  Text _buildHeightText() {
+    return Text(
+      l(context).height,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    );
+  }
+
+  Widget _buildWeightSlider() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 40, bottom: 16),
+      child: CustomSlider(
+        min: 40,
+        max: 120,
+        measurementUnit: 'kg',
+        value: weight,
+        onChanged: !isBmiCalculated
+            ? (double newValue) {
+                setState(() {
+                  weight = newValue.round();
+                });
+              }
+            : null,
+      ),
+    );
+  }
+
+  Text _buildWeightText() {
+    return Text(
+      l(context).weight,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    );
+  }
+
+  void _calculateBmi(BuildContext ctx, WidgetRef ref, int height, int weight) {
+    final model = ref.read(bmiProvider.notifier);
+    model.calculate(height: height, weight: weight);
+  }
+
+  void _changeGender(Gender gender) {
+    if (isBmiCalculated) {
+      return;
+    }
+
+    setState(() {
+      selectedGender = gender;
+    });
+  }
+
+  void _resetBmi(BuildContext ctx, WidgetRef ref) {
+    final model = ref.read(bmiProvider.notifier);
+    model.reset();
+  }
+}
+
+class _AppBar extends StatelessWidget {
+  const _AppBar({
+    Key? key,
+    required this.settingsController,
+  }) : super(key: key);
+
+  final SettingsController settingsController;
+
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.of(context).size.height;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
-    final state = ref.watch(bmiProvider);
-    state.when(
-      initial: () => isBmiCalculated = false,
-      calculated: (bmi) {
-        bmiResult = bmi;
-        isBmiCalculated = true;
-      },
-    );
-
-    return Scaffold(
-      appBar: _buildAppBar(),
-      backgroundColor: primaryColor.withOpacity(.1),
-      body: deviceHeight < 700
-          ? SingleChildScrollView(child: _buildBody())
-          : _buildBody(),
+    return AppBar(
+      key: const ValueKey<String>('AppBar'),
+      actions: [
+        PopupMenuButton<Locale>(
+          icon: SvgPicture.asset(
+            LocalizationUtil.getAssetName(settingsController.locale),
+          ),
+          tooltip: l(context).changeLanguage,
+          onSelected: (Locale locale) {
+            if (settingsController.locale != locale) {
+              settingsController.updateLocale(locale);
+            }
+          },
+          itemBuilder: (context) => <PopupMenuEntry<Locale>>[
+            PopupMenuItem<Locale>(
+              value: localeEnglish,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset(assetEnglish, height: 20, width: 20),
+                      const SizedBox(width: 8),
+                      Text(
+                        l(context).english,
+                        style: textTheme.bodyText2,
+                      ),
+                    ],
+                  ),
+                  if (settingsController.locale == localeEnglish)
+                    Icon(Icons.check, color: theme.primaryColor),
+                ],
+              ),
+            ),
+            PopupMenuItem<Locale>(
+              value: localeTurkish,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset(assetTurkish, height: 20, width: 20),
+                      const SizedBox(width: 8),
+                      Text(
+                        l(context).turkish,
+                        style: textTheme.bodyText2,
+                      ),
+                    ],
+                  ),
+                  if (settingsController.locale == localeTurkish)
+                    Icon(Icons.check, color: theme.primaryColor),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+      backgroundColor: Colors.white,
+      title: Text(l(context).title, style: appBarTextStyle),
     );
   }
 }
