@@ -8,6 +8,9 @@ linter:
     sort_pub_dependencies: true
 
 analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   plugins:
     - dart_code_metrics
 
