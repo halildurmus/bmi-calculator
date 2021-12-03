@@ -1,13 +1,13 @@
 # BMI Calculator
 
-[![CirrusCI](https://img.shields.io/cirrus/github/halildurmus/bmi-calculator?style=for-the-badge)](https://cirrus-ci.com/halildurmus/bmi-calculator)
+[![Codemagic build status](https://api.codemagic.io/apps/61aa396e1f5b14000af8348b/61aa396e1f5b14000af8348a/status_badge.svg)](https://codemagic.io/apps/61aa396e1f5b14000af8348b/61aa396e1f5b14000af8348a/latest_build)
 ![GitHub top language](https://img.shields.io/github/languages/top/halildurmus/bmi-calculator?style=for-the-badge)
 [![CodeFactor](https://www.codefactor.io/repository/github/halildurmus/bmi-calculator/badge?style=for-the-badge)](https://www.codefactor.io/repository/github/halildurmus/bmi-calculator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/blob/master/LICENSE)
 ![Visits](https://badges.pufler.dev/visits/halildurmus/bmi-calculator?style=for-the-badge)
 
-> **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.  
-Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.  
+> **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.
+Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.
 The app supports **English** and **Turkish** languages.
 
 ## Table of Contents
@@ -76,9 +76,9 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome.  
-Feel free to check [issues page](https://github.com/halildurmus/bmi-calculator/issues) if you want to contribute.  
-[Check the contributing guide](./CONTRIBUTING.md).  
+Contributions, issues and feature requests are welcome.
+Feel free to check [issues page](https://github.com/halildurmus/bmi-calculator/issues) if you want to contribute.
+[Check the contributing guide](./CONTRIBUTING.md).
 
 ## Author
 
@@ -94,5 +94,5 @@ This project is [MIT](https://github.com/halildurmus/bmi-calculator/blob/master/
 * [BMI Calculator - Daily UI challenge](https://dribbble.com/shots/2999904-BMI-Calculator-Daily-UI-challenge "BMI Calculator - Daily UI challenge")
 * [BMI Chart](https://www.wcrf-uk.org/uk/here-help/health-tools/bmi-calculator)
 * Country Icons made by [Freepik](https://www.freepik.com "Freepik") from [www.flaticon.com](https://www.flaticon.com "Flaticon")
-* [Img Shields](https://shields.io "Img Shields") 
+* [Img Shields](https://shields.io "Img Shields")
 * Preview mockups were created with [AppMockUp](https://app-mockup.com "AppMockUp")
