@@ -1,5 +1,3 @@
-import 'dart:ui' show Locale;
-
 import 'package:flutter/material.dart';
 
 // Assets
