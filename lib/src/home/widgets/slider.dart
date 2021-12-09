@@ -17,6 +17,7 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
       Size.fromRadius(thumbRadius);
 
   @override
+  // ignore: long-parameter-list
   void paint(
     PaintingContext context,
     Offset center, {
@@ -63,6 +64,7 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
 // Removes extra padding around the track by overriding getPreferredRect().
 class _CustomTrackShape extends RoundedRectSliderTrackShape {
   @override
+  // ignore: long-parameter-list
   Rect getPreferredRect({
     required RenderBox parentBox,
     Offset offset = Offset.zero,
@@ -75,6 +77,7 @@ class _CustomTrackShape extends RoundedRectSliderTrackShape {
     final double trackTop =
         offset.dy + (parentBox.size.height - trackHeight) / 2;
     final double trackWidth = parentBox.size.width;
+
     return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }
