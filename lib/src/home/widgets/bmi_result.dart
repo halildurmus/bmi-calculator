@@ -37,6 +37,14 @@ class BmiResultWidget extends ConsumerWidget {
 class _BmiChartButton extends StatelessWidget {
   const _BmiChartButton({Key? key}) : super(key: key);
 
+  void _showBmiChart(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (_) => const BmiChartWidget(),
+      constraints: BoxConstraints.tight(const Size.fromWidth(500)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -44,12 +52,7 @@ class _BmiChartButton extends StatelessWidget {
 
     return GestureDetector(
       key: const ValueKey<String>('BmiChartButton'),
-      onTap: () {
-        showModalBottomSheet<void>(
-          context: context,
-          builder: (BuildContext context) => const BmiChartWidget(),
-        );
-      },
+      onTap: () => _showBmiChart(context),
       child: Row(
         children: [
           Text(

@@ -22,8 +22,9 @@ class GenderToggleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor =
-        selectedGender == gender ? activeButtonBgColor : inactiveButtonBgColor;
+    final Color backgroundColor = selectedGender == gender
+        ? activeButtonBgColor
+        : inactiveButtonBgColor;
 
     final Color textColor = selectedGender == gender
         ? activeButtonTextColor
@@ -42,8 +43,8 @@ class GenderToggleButton extends StatelessWidget {
           (states) => 0,
         ),
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
-          (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
+          (states) => const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(24)),
           ),
         ),
       ),

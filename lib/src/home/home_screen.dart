@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
 import '../l10n/localization_util.dart';
@@ -8,35 +7,59 @@ import '../settings/settings.controller.dart';
 import 'models/bmi.dart';
 import 'models/bmi_view_model.dart';
 import 'models/gender.dart';
-import 'widgets/bmi_info.dart';
-import 'widgets/bmi_result.dart';
+import 'widgets/action_button.dart';
+import 'widgets/app_bar.dart';
+import 'widgets/bottom_content.dart';
 import 'widgets/gender_toggle_button.dart';
-import 'widgets/slider.dart';
-import 'widgets/wave_painter.dart';
+import 'widgets/height_slider.dart';
+import 'widgets/weight_slider.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({
-    Key? key,
-    required this.settingsController,
-  }) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key, required this.settingsController})
+      : super(key: key);
 
   final SettingsController settingsController;
-
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends ConsumerState<HomeScreen> {
-  Gender selectedGender = Gender.male;
-  int height = 170;
-  int weight = 65;
-  bool isBmiCalculated = false;
-  late Bmi bmiResult;
 
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
 
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: AppBarWidget(settingsController: settingsController),
+      ),
+      backgroundColor: primaryColor.withOpacity(.1),
+      body: deviceHeight < 700
+          ? const SingleChildScrollView(child: _Body())
+          : const _Body(),
+    );
+  }
+}
+
+class _Body extends ConsumerStatefulWidget {
+  const _Body({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends ConsumerState<_Body> {
+  Gender selectedGender = Gender.male;
+  int height = 170;
+  int weight = 65;
+  bool isBmiCalculated = false;
+  Bmi? bmiResult;
+
+  void _onGenderChanged(Gender newGender) =>
+      setState(() => selectedGender = newGender);
+
+  void _onHeightChanged(int newHeight) => setState(() => height = newHeight);
+
+  void _onWeightChanged(int newWeight) => setState(() => weight = newWeight);
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(bmiProvider);
     state.when(
       initial: () => isBmiCalculated = false,
@@ -45,41 +68,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         isBmiCalculated = true;
       },
     );
-
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: _AppBar(settingsController: widget.settingsController),
-      ),
-      backgroundColor: primaryColor.withOpacity(.1),
-      body: deviceHeight < 700
-          ? SingleChildScrollView(child: _buildBody())
-          : _buildBody(),
-    );
-  }
-
-  Widget _buildActionButton() {
-    return Padding(
-      padding: const EdgeInsets.only(right: 32),
-      child: DecoratedBox(
-        decoration: actionButtonDecoration,
-        child: FloatingActionButton.large(
-          onPressed: isBmiCalculated
-              ? () => _resetBmi(context, ref)
-              : () => _calculateBmi(context, ref, height, weight),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          child: Icon(
-            isBmiCalculated ? Icons.refresh : Icons.trending_flat,
-            color: Theme.of(context).primaryColor,
-            size: 48,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBody() {
     final deviceSize = MediaQuery.of(context).size;
 
     return Center(
@@ -99,12 +87,56 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildGenderText(),
-                    _buildGenderButtons(),
-                    _buildHeightText(),
-                    _buildHeightSlider(),
-                    _buildWeightText(),
-                    _buildWeightSlider(),
+                    const _GenderText(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 45,
+                              child: GenderToggleButton(
+                                valueKey: const ValueKey<String>('Gender.male'),
+                                onTap: () => _onGenderChanged(Gender.male),
+                                gender: Gender.male,
+                                selectedGender: selectedGender,
+                                text: l(context).male,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: SizedBox(
+                              height: 45,
+                              child: GenderToggleButton(
+                                valueKey: const ValueKey<String>('Gender.female'),
+                                onTap: () => _onGenderChanged(Gender.female),
+                                gender: Gender.female,
+                                selectedGender: selectedGender,
+                                text: l(context).female,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const _HeightText(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40, bottom: 16),
+                      child: HeightSlider(
+                        isBmiCalculated: isBmiCalculated,
+                        onHeightChanged: _onHeightChanged,
+                      ),
+                    ),
+                    const _WeightText(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40, bottom: 16),
+                      child: WeightSlider(
+                        isBmiCalculated: isBmiCalculated,
+                        onWeightChanged: _onWeightChanged,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -114,8 +146,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: Stack(
                 alignment: Alignment.topRight,
                 children: [
-                  _buildBottomContent(),
-                  _buildActionButton(),
+                  BottomContent(
+                    bmiResult: bmiResult,
+                    isBmiCalculated: isBmiCalculated,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 32),
+                    child: ActionButton(
+                      height: height,
+                      isBmiCalculated: isBmiCalculated,
+                      weight: weight,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -124,218 +166,40 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
     );
   }
+}
 
-  Widget _buildBottomContent() {
-    return CustomPaint(
-      painter: const WavePainter(),
-      child: AnimatedCrossFade(
-        duration: const Duration(milliseconds: 1000),
-        firstChild: const BmiInfoWidget(),
-        secondChild: isBmiCalculated
-            ? BmiResultWidget(bmi: bmiResult)
-            : const SizedBox(),
-        crossFadeState: !isBmiCalculated
-            ? CrossFadeState.showFirst
-            : CrossFadeState.showSecond,
-      ),
-    );
-  }
+class _GenderText extends StatelessWidget {
+  const _GenderText({Key? key}) : super(key: key);
 
-  Widget _buildGenderButtons() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: SizedBox(
-              height: 45,
-              child: _buildGenderToggleButton(
-                title: l(context).male,
-                gender: Gender.male,
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: SizedBox(
-              height: 45,
-              child: _buildGenderToggleButton(
-                title: l(context).female,
-                gender: Gender.female,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildGenderText() {
+  @override
+  Widget build(BuildContext context) {
     return Text(
       l(context).gender,
       style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     );
   }
+}
 
-  Widget _buildGenderToggleButton({
-    required Gender gender,
-    required String title,
-  }) {
-    return GenderToggleButton(
-      valueKey: ValueKey<String>('$gender'),
-      onTap: () => _changeGender(gender),
-      gender: gender,
-      selectedGender: selectedGender,
-      text: title,
-    );
-  }
+class _HeightText extends StatelessWidget {
+  const _HeightText({Key? key}) : super(key: key);
 
-  Widget _buildHeightSlider() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 16),
-      child: CustomSlider(
-        min: 120,
-        max: 220,
-        measurementUnit: 'cm',
-        value: height,
-        onChanged: !isBmiCalculated
-            ? (double newValue) {
-                setState(() {
-                  height = newValue.round();
-                });
-              }
-            : null,
-      ),
-    );
-  }
-
-  Text _buildHeightText() {
+  @override
+  Widget build(BuildContext context) {
     return Text(
       l(context).height,
       style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     );
   }
-
-  Widget _buildWeightSlider() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 16),
-      child: CustomSlider(
-        min: 40,
-        max: 120,
-        measurementUnit: 'kg',
-        value: weight,
-        onChanged: !isBmiCalculated
-            ? (double newValue) {
-                setState(() {
-                  weight = newValue.round();
-                });
-              }
-            : null,
-      ),
-    );
-  }
-
-  Text _buildWeightText() {
-    return Text(
-      l(context).weight,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    );
-  }
-
-  void _calculateBmi(BuildContext ctx, WidgetRef ref, int height, int weight) {
-    final model = ref.read(bmiProvider.notifier);
-    model.calculate(height: height, weight: weight);
-  }
-
-  void _changeGender(Gender gender) {
-    if (isBmiCalculated) {
-      return;
-    }
-
-    setState(() {
-      selectedGender = gender;
-    });
-  }
-
-  void _resetBmi(BuildContext ctx, WidgetRef ref) {
-    final model = ref.read(bmiProvider.notifier);
-    model.reset();
-  }
 }
 
-class _AppBar extends StatelessWidget {
-  const _AppBar({
-    Key? key,
-    required this.settingsController,
-  }) : super(key: key);
-
-  final SettingsController settingsController;
+class _WeightText extends StatelessWidget {
+  const _WeightText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    return AppBar(
-      key: const ValueKey<String>('AppBar'),
-      actions: [
-        PopupMenuButton<Locale>(
-          icon: SvgPicture.asset(
-            LocalizationUtil.getAssetName(settingsController.locale),
-          ),
-          tooltip: l(context).changeLanguage,
-          onSelected: (Locale locale) {
-            if (settingsController.locale != locale) {
-              settingsController.updateLocale(locale);
-            }
-          },
-          itemBuilder: (context) => <PopupMenuEntry<Locale>>[
-            PopupMenuItem<Locale>(
-              value: localeEnglish,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset(assetEnglish, height: 20, width: 20),
-                      const SizedBox(width: 8),
-                      Text(
-                        l(context).english,
-                        style: textTheme.bodyText2,
-                      ),
-                    ],
-                  ),
-                  if (settingsController.locale == localeEnglish)
-                    Icon(Icons.check, color: theme.primaryColor),
-                ],
-              ),
-            ),
-            PopupMenuItem<Locale>(
-              value: localeTurkish,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset(assetTurkish, height: 20, width: 20),
-                      const SizedBox(width: 8),
-                      Text(
-                        l(context).turkish,
-                        style: textTheme.bodyText2,
-                      ),
-                    ],
-                  ),
-                  if (settingsController.locale == localeTurkish)
-                    Icon(Icons.check, color: theme.primaryColor),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
-      backgroundColor: Colors.white,
-      title: Text(l(context).title, style: appBarTextStyle),
+    return Text(
+      l(context).weight,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     );
   }
 }
