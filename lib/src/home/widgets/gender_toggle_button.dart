@@ -8,16 +8,16 @@ class GenderToggleButton extends StatelessWidget {
   const GenderToggleButton({
     Key? key,
     required this.valueKey,
+    this.onTap,
     required this.gender,
     required this.selectedGender,
-    this.onTap,
     required this.text,
   }) : super(key: key);
 
   final ValueKey<String> valueKey;
+  final VoidCallback? onTap;
   final Gender gender;
   final Gender selectedGender;
-  final void Function()? onTap;
   final String text;
 
   @override

@@ -4,36 +4,42 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../constants.dart';
 import '../../home/models/bmi_view_model.dart';
 
-class ActionButton extends ConsumerWidget {
-  const ActionButton({
-    Key? key,
-    required this.height,
-    required this.isBmiCalculated,
-    required this.weight,
-  }) : super(key: key);
+class ActionButton extends ConsumerStatefulWidget {
+  const ActionButton({Key? key, required this.height, required this.weight})
+      : super(key: key);
 
   final int height;
-  final bool isBmiCalculated;
   final int weight;
 
-  void _calculateBmi(WidgetRef ref, int height, int weight) {
+  @override
+  ConsumerState<ActionButton> createState() => _ActionButtonState();
+}
+
+class _ActionButtonState extends ConsumerState<ActionButton> {
+  bool isBmiCalculated = false;
+
+  void _calculateBmi() {
     final model = ref.read(bmiProvider.notifier);
-    model.calculate(height: height, weight: weight);
+    model.calculate(height: widget.height, weight: widget.weight);
   }
 
-  void _resetBmi(WidgetRef ref) {
+  void _resetBmi() {
     final model = ref.read(bmiProvider.notifier);
     model.reset();
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    final state = ref.watch(bmiProvider);
+    state.when(
+      initial: () => isBmiCalculated = false,
+      calculated: (_) => isBmiCalculated = true,
+    );
+
     return DecoratedBox(
       decoration: actionButtonDecoration,
       child: FloatingActionButton.large(
-        onPressed: isBmiCalculated
-            ? () => _resetBmi(ref)
-            : () => _calculateBmi(ref, height, weight),
+        onPressed: isBmiCalculated ? () => _resetBmi() : () => _calculateBmi(),
         backgroundColor: Colors.white,
         elevation: 0,
         child: Icon(

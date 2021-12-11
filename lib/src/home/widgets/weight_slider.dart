@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../home/models/bmi_view_model.dart';
 import 'slider.dart';
 
-class WeightSlider extends StatefulWidget {
-  const WeightSlider({
-    Key? key,
-    required this.isBmiCalculated,
-    required this.onWeightChanged,
-  }) : super(key: key);
+class WeightSlider extends ConsumerStatefulWidget {
+  const WeightSlider({Key? key, required this.onWeightChanged})
+      : super(key: key);
 
   final ValueChanged<int> onWeightChanged;
-  final bool isBmiCalculated;
 
   @override
-  _WeightSliderState createState() => _WeightSliderState();
+  ConsumerState<WeightSlider> createState() => _WeightSliderState();
 }
 
-class _WeightSliderState extends State<WeightSlider> {
+class _WeightSliderState extends ConsumerState<WeightSlider> {
+  bool isBmiCalculated = false;
   int weight = 65;
 
   void _onChanged(double value) {
@@ -26,12 +25,18 @@ class _WeightSliderState extends State<WeightSlider> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(bmiProvider);
+    state.when(
+      initial: () => isBmiCalculated = false,
+      calculated: (bmi) => isBmiCalculated = true,
+    );
+
     return CustomSlider(
       min: 40,
       max: 120,
       measurementUnit: 'kg',
       value: weight,
-      onChanged: !widget.isBmiCalculated ? (value) => _onChanged(value) : null,
+      onChanged: !isBmiCalculated ? (value) => _onChanged(value) : null,
     );
   }
 }

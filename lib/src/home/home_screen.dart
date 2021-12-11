@@ -129,18 +129,12 @@ class _BodyState extends ConsumerState<_Body> {
                     const _HeightText(),
                     Padding(
                       padding: const EdgeInsets.only(top: 40, bottom: 16),
-                      child: HeightSlider(
-                        isBmiCalculated: isBmiCalculated,
-                        onHeightChanged: _onHeightChanged,
-                      ),
+                      child: HeightSlider(onHeightChanged: _onHeightChanged),
                     ),
                     const _WeightText(),
                     Padding(
                       padding: const EdgeInsets.only(top: 40, bottom: 16),
-                      child: WeightSlider(
-                        isBmiCalculated: isBmiCalculated,
-                        onWeightChanged: _onWeightChanged,
-                      ),
+                      child: WeightSlider(onWeightChanged: _onWeightChanged),
                     ),
                   ],
                 ),
@@ -151,17 +145,10 @@ class _BodyState extends ConsumerState<_Body> {
               child: Stack(
                 alignment: Alignment.topRight,
                 children: [
-                  BottomContent(
-                    bmiResult: bmiResult,
-                    isBmiCalculated: isBmiCalculated,
-                  ),
+                  const BottomContent(),
                   Padding(
                     padding: const EdgeInsets.only(right: 32),
-                    child: ActionButton(
-                      height: height,
-                      isBmiCalculated: isBmiCalculated,
-                      weight: weight,
-                    ),
+                    child: ActionButton(height: height, weight: weight),
                   ),
                 ],
               ),

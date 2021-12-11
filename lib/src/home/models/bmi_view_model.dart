@@ -10,11 +10,9 @@ class BmiViewModel extends StateNotifier<BmiState> {
   BmiViewModel() : super(const BmiState.initial());
 
   void calculate({required int height, required int weight}) {
-    final Bmi bmi = Bmi(height: height, weight: weight);
+    final bmi = Bmi(height: height, weight: weight);
     state = BmiState.calculated(bmi);
   }
 
-  void reset() {
-    state = const BmiState.initial();
-  }
+  void reset() => state = const BmiState.initial();
 }

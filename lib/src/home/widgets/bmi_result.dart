@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/localization_util.dart';
 import '../models/bmi.dart';
 import 'bmi_chart.dart';
 
-class BmiResultWidget extends ConsumerWidget {
-  final Bmi bmi;
+class BmiResultWidget extends StatelessWidget {
+  const BmiResultWidget({Key? key, required this.bmiResult}) : super(key: key);
 
-  const BmiResultWidget({Key? key, required this.bmi}) : super(key: key);
+  final Bmi bmiResult;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 110, 24, 0),
       child: Column(
@@ -25,9 +24,9 @@ class BmiResultWidget extends ConsumerWidget {
               _BmiChartButton(),
             ],
           ),
-          _BmiValue(bmi: bmi),
+          _BmiValue(bmiResult: bmiResult),
           const SizedBox(height: 10),
-          _BmiInterpretation(bmi: bmi),
+          _BmiInterpretation(bmiResult: bmiResult),
         ],
       ),
     );
@@ -71,9 +70,10 @@ class _BmiChartButton extends StatelessWidget {
 }
 
 class _BmiInterpretation extends StatelessWidget {
-  const _BmiInterpretation({Key? key, required this.bmi}) : super(key: key);
+  const _BmiInterpretation({Key? key, required this.bmiResult})
+      : super(key: key);
 
-  final Bmi bmi;
+  final Bmi bmiResult;
 
   @override
   Widget build(BuildContext context) {
@@ -81,19 +81,20 @@ class _BmiInterpretation extends StatelessWidget {
 
     return Center(
       child: Text(
-        bmi.getInterpretationText(context),
+        bmiResult.getInterpretationText(context),
         key: const ValueKey<String>('BmiInterpretationText'),
         textAlign: TextAlign.center,
-        style: textTheme.bodyText1!.copyWith(color: bmi.interpretationColor),
+        style:
+            textTheme.bodyText1!.copyWith(color: bmiResult.interpretationColor),
       ),
     );
   }
 }
 
 class _BmiValue extends StatelessWidget {
-  const _BmiValue({Key? key, required this.bmi}) : super(key: key);
+  const _BmiValue({Key? key, required this.bmiResult}) : super(key: key);
 
-  final Bmi bmi;
+  final Bmi bmiResult;
 
   @override
   Widget build(BuildContext context) {
@@ -105,12 +106,12 @@ class _BmiValue extends StatelessWidget {
       textBaseline: TextBaseline.alphabetic,
       children: [
         Text(
-          bmi.wholeNumber,
+          bmiResult.wholeNumber,
           style: textTheme.headline3!.copyWith(color: theme.primaryColor),
         ),
         const SizedBox(height: 5),
         Text(
-          bmi.decimalPart,
+          bmiResult.decimalPart,
           style: textTheme.headline5!.copyWith(
             color: theme.primaryColor,
             fontSize: 28,
