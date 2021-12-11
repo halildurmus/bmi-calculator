@@ -27,14 +27,16 @@ dart_code_metrics:
     - test/**
   rules:
     - always-remove-listener
-    # - avoid-returning-widgets
+    - avoid-returning-widgets
     - avoid-unnecessary-setstate
     - avoid-wrapping-in-padding
     - newline-before-return
     - no-boolean-literal-compare
     - no-empty-block
+    - no-equal-then-else
     - prefer-conditional-expressions
+    - prefer-const-border-radius
+    - prefer-extracting-callbacks
     - prefer-single-widget-per-file:
         ignore-private-widgets: true
     - prefer-trailing-comma
-    - no-equal-then-else
