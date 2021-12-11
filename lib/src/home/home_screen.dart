@@ -98,7 +98,9 @@ class _BodyState extends ConsumerState<_Body> {
                               height: 45,
                               child: GenderToggleButton(
                                 valueKey: const ValueKey<String>('Gender.male'),
-                                onTap: () => _onGenderChanged(Gender.male),
+                                onTap: isBmiCalculated
+                                    ? null
+                                    : () => _onGenderChanged(Gender.male),
                                 gender: Gender.male,
                                 selectedGender: selectedGender,
                                 text: l(context).male,
@@ -110,8 +112,11 @@ class _BodyState extends ConsumerState<_Body> {
                             child: SizedBox(
                               height: 45,
                               child: GenderToggleButton(
-                                valueKey: const ValueKey<String>('Gender.female'),
-                                onTap: () => _onGenderChanged(Gender.female),
+                                valueKey:
+                                    const ValueKey<String>('Gender.female'),
+                                onTap: isBmiCalculated
+                                    ? null
+                                    : () => _onGenderChanged(Gender.female),
                                 gender: Gender.female,
                                 selectedGender: selectedGender,
                                 text: l(context).female,
