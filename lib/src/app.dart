@@ -12,11 +12,9 @@ class MyApp extends StatelessWidget {
   final SettingsController settingsController;
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: settingsController,
-      builder: (context, child) {
-        return MaterialApp(
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: settingsController,
+        builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
           locale: settingsController.locale,
           localizationsDelegates: const [
@@ -29,8 +27,6 @@ class MyApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           theme: lightTheme(context),
           home: HomeScreen(settingsController: settingsController),
-        );
-      },
-    );
-  }
+        ),
+      );
 }

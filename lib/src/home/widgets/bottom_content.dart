@@ -20,14 +20,13 @@ class _BottomContentState extends ConsumerState<BottomContent> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(bmiProvider);
-    state.when(
-      initial: () => isBmiCalculated = false,
-      calculated: (bmi) {
-        bmiResult = bmi;
-        isBmiCalculated = true;
-      },
-    );
+    ref.watch(bmiProvider).when(
+          initial: () => isBmiCalculated = false,
+          calculated: (bmi) {
+            bmiResult = bmi;
+            isBmiCalculated = true;
+          },
+        );
 
     return CustomPaint(
       painter: const WavePainter(),

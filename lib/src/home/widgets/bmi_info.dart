@@ -6,19 +6,17 @@ class BmiInfoWidget extends StatelessWidget {
   const BmiInfoWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 155, left: 16, right: 16),
-        child: Column(
-          children: const [
-            _FirstText(),
-            _SecondText(),
-          ],
+  Widget build(BuildContext context) => Center(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 155, left: 16, right: 16),
+          child: Column(
+            children: const [
+              _FirstText(),
+              _SecondText(),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class _FirstText extends StatelessWidget {

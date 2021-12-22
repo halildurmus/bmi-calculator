@@ -9,7 +9,7 @@ class FakeSettingsService implements SettingsService {
 
   @override
   Future<Locale> locale() async {
-    final String languageCode = Platform.localeName.split('_')[0];
+    final languageCode = Platform.localeName.split('_')[0];
     _locale = Locale(languageCode);
 
     return Future<Locale>.value(_locale);

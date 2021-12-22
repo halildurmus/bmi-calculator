@@ -22,11 +22,9 @@ class GenderToggleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = selectedGender == gender
-        ? activeButtonBgColor
-        : inactiveButtonBgColor;
-
-    final Color textColor = selectedGender == gender
+    final backgroundColor =
+        selectedGender == gender ? activeButtonBgColor : inactiveButtonBgColor;
+    final textColor = selectedGender == gender
         ? activeButtonTextColor
         : inactiveButtonTextColor;
 

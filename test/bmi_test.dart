@@ -5,14 +5,14 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('BMI should be properly calculated with passed arguments', () {
     // Testing BMI for the normal weight.
-    int _height = 182;
-    int _weight = 76;
+    var _height = 182;
+    var _weight = 76;
 
-    Bmi _bmi = Bmi(height: _height, weight: _weight);
-    String _bmiAsString = _bmi.bmiAsString;
-    String _bmiIntegerPart = _bmi.wholeNumber;
-    String _bmiDecimalPart = _bmi.decimalPart;
-    Color _bmiInterpretationColor = _bmi.interpretationColor;
+    var _bmi = Bmi(height: _height, weight: _weight);
+    var _bmiAsString = _bmi.bmiAsString;
+    var _bmiIntegerPart = _bmi.wholeNumber;
+    var _bmiDecimalPart = _bmi.decimalPart;
+    var _bmiInterpretationColor = _bmi.interpretationColor;
 
     expect(_bmiAsString, '22.94');
     expect(_bmiIntegerPart, '22');

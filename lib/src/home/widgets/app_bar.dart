@@ -24,7 +24,7 @@ class AppBarWidget extends StatelessWidget {
             LocalizationUtil.getAssetName(settingsController.locale),
           ),
           tooltip: l(context).changeLanguage,
-          onSelected: (Locale locale) {
+          onSelected: (locale) {
             if (settingsController.locale != locale) {
               settingsController.updateLocale(locale);
             }

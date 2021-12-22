@@ -8,14 +8,12 @@ import 'src/settings/settings.service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   // Initializes a new SharedPreferences instance.
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final prefs = await SharedPreferences.getInstance();
 
   // Sets up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.
-  final SettingsController settingsController =
-      SettingsController(SettingsService(prefs));
+  final settingsController = SettingsController(SettingsService(prefs));
 
   // Loads the user's preferred settings while the splash screen is displayed.
   await settingsController.loadSettings();

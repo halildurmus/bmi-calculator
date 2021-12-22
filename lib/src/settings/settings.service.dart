@@ -22,7 +22,7 @@ class SettingsService {
   ///
   /// If the preferred language is not found then the system locale is used.
   Future<Locale> locale() async {
-    final String languageCode =
+    final languageCode =
         _prefs.getString(_languageKey) ?? _getSystemLanguageCode();
 
     return Locale(languageCode);

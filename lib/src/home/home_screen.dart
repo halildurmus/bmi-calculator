@@ -60,14 +60,13 @@ class _BodyState extends ConsumerState<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(bmiProvider);
-    state.when(
-      initial: () => isBmiCalculated = false,
-      calculated: (bmi) {
-        bmiResult = bmi;
-        isBmiCalculated = true;
-      },
-    );
+    ref.watch(bmiProvider).when(
+          initial: () => isBmiCalculated = false,
+          calculated: (bmi) {
+            bmiResult = bmi;
+            isBmiCalculated = true;
+          },
+        );
     final deviceSize = MediaQuery.of(context).size;
 
     return Center(
@@ -164,34 +163,37 @@ class _GenderText extends StatelessWidget {
   const _GenderText({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      l(context).gender,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    );
-  }
+  Widget build(BuildContext context) => Text(
+        l(context).gender,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 }
 
 class _HeightText extends StatelessWidget {
   const _HeightText({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      l(context).height,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    );
-  }
+  Widget build(BuildContext context) => Text(
+        l(context).height,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 }
 
 class _WeightText extends StatelessWidget {
   const _WeightText({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      l(context).weight,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    );
-  }
+  Widget build(BuildContext context) => Text(
+        l(context).weight,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      );
 }

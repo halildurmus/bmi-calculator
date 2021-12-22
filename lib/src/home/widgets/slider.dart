@@ -48,8 +48,7 @@ class _CustomSliderThumbCircle extends SliderComponentShape {
       text: span,
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
-    );
-    tp.layout();
+    )..layout();
     final textCenter =
         Offset(center.dx - (tp.width / 2), center.dy - (tp.height / 2));
 
@@ -72,11 +71,10 @@ class _CustomTrackShape extends RoundedRectSliderTrackShape {
     bool isEnabled = false,
     bool isDiscrete = false,
   }) {
-    final double trackHeight = sliderTheme.trackHeight!;
-    final double trackLeft = offset.dx;
-    final double trackTop =
-        offset.dy + (parentBox.size.height - trackHeight) / 2;
-    final double trackWidth = parentBox.size.width;
+    final trackHeight = sliderTheme.trackHeight!;
+    final trackLeft = offset.dx;
+    final trackTop = offset.dy + (parentBox.size.height - trackHeight) / 2;
+    final trackWidth = parentBox.size.width;
 
     return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
@@ -104,23 +102,21 @@ class CustomSlider extends StatefulWidget {
 
 class _CustomSliderState extends State<CustomSlider> {
   @override
-  Widget build(BuildContext context) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        trackShape: _CustomTrackShape(),
-        thumbShape: _CustomSliderThumbCircle(
-          thumbRadius: 16,
+  Widget build(BuildContext context) => SliderTheme(
+        data: SliderTheme.of(context).copyWith(
+          trackShape: _CustomTrackShape(),
+          thumbShape: _CustomSliderThumbCircle(
+            thumbRadius: 16,
+            min: widget.min,
+            max: widget.max,
+          ),
+        ),
+        child: Slider(
+          value: widget.value.toDouble(),
           min: widget.min,
           max: widget.max,
+          label: '${widget.value.toString()} ${widget.measurementUnit}',
+          onChanged: widget.onChanged,
         ),
-      ),
-      child: Slider(
-        value: widget.value.toDouble(),
-        min: widget.min,
-        max: widget.max,
-        label: '${widget.value.toString()} ${widget.measurementUnit}',
-        onChanged: widget.onChanged,
-      ),
-    );
-  }
+      );
 }

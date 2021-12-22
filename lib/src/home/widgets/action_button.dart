@@ -19,27 +19,26 @@ class _ActionButtonState extends ConsumerState<ActionButton> {
   bool isBmiCalculated = false;
 
   void _calculateBmi() {
-    final model = ref.read(bmiProvider.notifier);
-    model.calculate(height: widget.height, weight: widget.weight);
+    ref
+        .read(bmiProvider.notifier)
+        .calculate(height: widget.height, weight: widget.weight);
   }
 
   void _resetBmi() {
-    final model = ref.read(bmiProvider.notifier);
-    model.reset();
+    ref.read(bmiProvider.notifier).reset();
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(bmiProvider);
-    state.when(
-      initial: () => isBmiCalculated = false,
-      calculated: (_) => isBmiCalculated = true,
-    );
+    ref.watch(bmiProvider).when(
+          initial: () => isBmiCalculated = false,
+          calculated: (_) => isBmiCalculated = true,
+        );
 
     return DecoratedBox(
       decoration: actionButtonDecoration,
       child: FloatingActionButton.large(
-        onPressed: isBmiCalculated ? () => _resetBmi() : () => _calculateBmi(),
+        onPressed: isBmiCalculated ? _resetBmi : _calculateBmi,
         backgroundColor: Colors.white,
         elevation: 0,
         child: Icon(

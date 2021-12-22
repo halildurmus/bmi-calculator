@@ -10,10 +10,9 @@ import 'settings/fake_settings.service.dart';
 void main() {
   testWidgets(
     'Home screen should properly display the widgets',
-    (WidgetTester tester) async {
+    (tester) async {
       // Sets up the SettingsController with the FakeSettingsService.
-      final SettingsController settingsController =
-          SettingsController(FakeSettingsService());
+      final settingsController = SettingsController(FakeSettingsService());
 
       // Loads the user's preferred settings before the app is rendered.
       await settingsController.loadSettings();

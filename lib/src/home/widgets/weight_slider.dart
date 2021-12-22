@@ -25,18 +25,17 @@ class _WeightSliderState extends ConsumerState<WeightSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(bmiProvider);
-    state.when(
-      initial: () => isBmiCalculated = false,
-      calculated: (bmi) => isBmiCalculated = true,
-    );
+    ref.watch(bmiProvider).when(
+          initial: () => isBmiCalculated = false,
+          calculated: (bmi) => isBmiCalculated = true,
+        );
 
     return CustomSlider(
       min: 40,
       max: 120,
       measurementUnit: 'kg',
       value: weight,
-      onChanged: !isBmiCalculated ? (value) => _onChanged(value) : null,
+      onChanged: !isBmiCalculated ? _onChanged : null,
     );
   }
 }

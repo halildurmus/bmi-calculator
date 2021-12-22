@@ -10,27 +10,25 @@ class BmiResultWidget extends StatelessWidget {
   final Bmi bmiResult;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 110, 24, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              _YourBmiText(),
-              _BmiChartButton(),
-            ],
-          ),
-          _BmiValue(bmiResult: bmiResult),
-          const SizedBox(height: 10),
-          _BmiInterpretation(bmiResult: bmiResult),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(24, 110, 24, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                _YourBmiText(),
+                _BmiChartButton(),
+              ],
+            ),
+            _BmiValue(bmiResult: bmiResult),
+            const SizedBox(height: 10),
+            _BmiInterpretation(bmiResult: bmiResult),
+          ],
+        ),
+      );
 }
 
 class _BmiChartButton extends StatelessWidget {

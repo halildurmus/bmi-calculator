@@ -35,7 +35,7 @@ class Bmi {
   ///
   /// e.g. If the BMI is '22.94' then returns '22'.
   String get wholeNumber {
-    final int indexOfDecimalPoint = bmiAsString.indexOf('.');
+    final indexOfDecimalPoint = bmiAsString.indexOf('.');
 
     return bmiAsString.substring(0, indexOfDecimalPoint);
   }
@@ -44,7 +44,7 @@ class Bmi {
   ///
   /// e.g. If the BMI is '22.94' then returns '.9'.
   String get decimalPart {
-    final int indexOfDecimalPoint = bmiAsString.indexOf('.');
+    final indexOfDecimalPoint = bmiAsString.indexOf('.');
 
     return bmiAsString.substring(indexOfDecimalPoint, indexOfDecimalPoint + 2);
   }
@@ -72,9 +72,7 @@ class Bmi {
   }
 
   @override
-  String toString() {
-    return 'Bmi{height: $height, weight: $weight, bmi: $bmi, '
-        'bmiAsString: $bmiAsString, wholeNumber: $wholeNumber, '
-        'decimalPart: $decimalPart}';
-  }
+  String toString() => 'Bmi{height: $height, weight: $weight, bmi: $bmi, '
+      'bmiAsString: $bmiAsString, wholeNumber: $wholeNumber, '
+      'decimalPart: $decimalPart}';
 }

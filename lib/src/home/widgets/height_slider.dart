@@ -25,18 +25,17 @@ class _HeightSliderState extends ConsumerState<HeightSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(bmiProvider);
-    state.when(
-      initial: () => isBmiCalculated = false,
-      calculated: (bmi) => isBmiCalculated = true,
-    );
+    ref.watch(bmiProvider).when(
+          initial: () => isBmiCalculated = false,
+          calculated: (bmi) => isBmiCalculated = true,
+        );
 
     return CustomSlider(
       min: 120,
       max: 220,
       measurementUnit: 'cm',
       value: height,
-      onChanged: !isBmiCalculated ? (value) => _onChanged(value) : null,
+      onChanged: !isBmiCalculated ? _onChanged : null,
     );
   }
 }
