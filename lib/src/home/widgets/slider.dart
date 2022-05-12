@@ -97,10 +97,10 @@ class CustomSlider extends StatefulWidget {
   final ValueChanged<double>? onChanged;
 
   @override
-  _CustomSliderState createState() => _CustomSliderState();
+  CustomSliderState createState() => CustomSliderState();
 }
 
-class _CustomSliderState extends State<CustomSlider> {
+class CustomSliderState extends State<CustomSlider> {
   @override
   Widget build(BuildContext context) => SliderTheme(
         data: SliderTheme.of(context).copyWith(

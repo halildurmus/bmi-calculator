@@ -15,7 +15,7 @@ class SettingsService {
   static const String _languageKey = 'app-language';
 
   String _getSystemLanguageCode() => kIsWeb
-      ? WidgetsBinding.instance!.window.locale.languageCode.split('_')[0]
+      ? WidgetsBinding.instance.window.locale.languageCode.split('_')[0]
       : Platform.localeName.split('_')[0];
 
   /// Loads the user's preferred language from [SharedPreferences].
