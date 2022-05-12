@@ -1,3 +1,7 @@
+## 3.2.0
+
+- Updated minimum Dart version to `2.17` and Flutter version to `3.0.0`.
+
 ## 3.1.0
 
 - Added support for Web
