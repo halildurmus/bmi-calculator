@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 3.1.0
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   cupertino_icons: ^1.0.3
@@ -14,8 +14,8 @@ dependencies:
     sdk: flutter
   flutter_riverpod: 1.0.2
   flutter_svg: ^1.0.0
-  font_awesome_flutter: ^9.1.0
-  freezed_annotation: ^1.0.0
+  font_awesome_flutter: ^10.1.0
+  freezed_annotation: ^2.0.3
   intl: ^0.17.0
   shared_preferences: ^2.0.7
 
@@ -24,10 +24,10 @@ dev_dependencies:
   dart_code_metrics: ^4.8.1
   flutter_driver:
     sdk: flutter
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  freezed: ^1.0.2+1
+  freezed: ^2.0.3
   test: any
 
 flutter:
