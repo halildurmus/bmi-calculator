@@ -62,7 +62,7 @@ class _CloseButton extends StatelessWidget {
 
     return TextButton(
       onPressed: () => Navigator.pop(context),
-      style: TextButton.styleFrom(primary: theme.primaryColor),
+      style: TextButton.styleFrom(foregroundColor: theme.primaryColor),
       child: Text(
         l(context).close,
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

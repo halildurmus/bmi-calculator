@@ -11,6 +11,12 @@ class AppBarWidget extends StatelessWidget {
 
   final SettingsController settingsController;
 
+  void onLanguageSelected(Locale? locale) {
+    if (settingsController.locale != locale) {
+      settingsController.updateLocale(locale);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -24,11 +30,7 @@ class AppBarWidget extends StatelessWidget {
             LocalizationUtil.getAssetName(settingsController.locale),
           ),
           tooltip: l(context).changeLanguage,
-          onSelected: (locale) {
-            if (settingsController.locale != locale) {
-              settingsController.updateLocale(locale);
-            }
-          },
+          onSelected: onLanguageSelected,
           itemBuilder: (context) => <PopupMenuEntry<Locale>>[
             PopupMenuItem<Locale>(
               value: localeEnglish,
