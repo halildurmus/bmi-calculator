@@ -4,7 +4,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/halildurmus/bmi-calculator?style=for-the-badge)
 [![CodeFactor](https://www.codefactor.io/repository/github/halildurmus/bmi-calculator/badge?style=for-the-badge)](https://www.codefactor.io/repository/github/halildurmus/bmi-calculator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/halildurmus/bmi-calculator/blob/master/LICENSE)
-![Visits](https://badges.pufler.dev/visits/halildurmus/bmi-calculator?style=for-the-badge)
+![Visits](https://visitor-badge.glitch.me/badge?page_id=halildurmus.bmi-calculator)
 
 > **BMI Calculator** is a **Body Mass Index(BMI)** calculator app developed with **[Flutter](https://github.com/flutter/flutter)**.
 Currently, the BMI is calculated using **Metric** units. Support for **Imperial** units may be added in the future.
