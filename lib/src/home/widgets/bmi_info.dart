@@ -6,11 +6,11 @@ class BmiInfoWidget extends StatelessWidget {
   const BmiInfoWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
         child: Padding(
-          padding: const EdgeInsets.only(top: 155, left: 16, right: 16),
+          padding: EdgeInsets.only(top: 155, left: 16, right: 16),
           child: Column(
-            children: const [
+            children: [
               _FirstText(),
               _SecondText(),
             ],
@@ -30,7 +30,7 @@ class _FirstText extends StatelessWidget {
       l(context).bmiInfoFirst,
       key: const ValueKey<String>('BmiInfoFirst'),
       textAlign: TextAlign.center,
-      style: textTheme.bodyText1!.copyWith(
+      style: textTheme.bodyLarge!.copyWith(
         color: Colors.black54.withOpacity(.4),
         fontWeight: FontWeight.w700,
       ),
@@ -49,7 +49,7 @@ class _SecondText extends StatelessWidget {
       l(context).bmiInfoSecond,
       key: const ValueKey<String>('BmiInfoSecond'),
       textAlign: TextAlign.center,
-      style: textTheme.bodyText1!.copyWith(
+      style: textTheme.bodyLarge!.copyWith(
         color: Colors.grey,
         fontSize: 11.5,
         fontStyle: FontStyle.italic,

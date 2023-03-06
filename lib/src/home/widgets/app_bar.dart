@@ -43,7 +43,7 @@ class AppBarWidget extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         l(context).english,
-                        style: textTheme.bodyText2,
+                        style: textTheme.bodyMedium,
                       ),
                     ],
                   ),
@@ -63,7 +63,7 @@ class AppBarWidget extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         l(context).turkish,
-                        style: textTheme.bodyText2,
+                        style: textTheme.bodyMedium,
                       ),
                     ],
                   ),

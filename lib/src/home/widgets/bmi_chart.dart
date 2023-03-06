@@ -45,7 +45,7 @@ class _BmiChartText extends StatelessWidget {
 
     return Text(
       l(context).theBmiChart,
-      style: textTheme.headline6!.copyWith(
+      style: textTheme.titleLarge!.copyWith(
         color: theme.primaryColor,
         fontWeight: FontWeight.bold,
       ),
