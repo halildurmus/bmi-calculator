@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 3.2.0
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: '>=2.19.2 <4.0.0'
 
 dependencies:
   cupertino_icons: ^1.0.3
