@@ -16,9 +16,9 @@ class BmiResultWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 _YourBmiText(),
                 _BmiChartButton(),
               ],
@@ -54,7 +54,7 @@ class _BmiChartButton extends StatelessWidget {
         children: [
           Text(
             l(context).theBmiChart,
-            style: textTheme.bodyText1!.copyWith(
+            style: textTheme.bodyLarge!.copyWith(
               color: theme.primaryColor,
               fontSize: 12,
             ),
@@ -83,7 +83,7 @@ class _BmiInterpretation extends StatelessWidget {
         key: const ValueKey<String>('BmiInterpretationText'),
         textAlign: TextAlign.center,
         style:
-            textTheme.bodyText1!.copyWith(color: bmiResult.interpretationColor),
+            textTheme.bodyLarge!.copyWith(color: bmiResult.interpretationColor),
       ),
     );
   }
@@ -105,12 +105,12 @@ class _BmiValue extends StatelessWidget {
       children: [
         Text(
           bmiResult.wholeNumber,
-          style: textTheme.headline3!.copyWith(color: theme.primaryColor),
+          style: textTheme.displaySmall!.copyWith(color: theme.primaryColor),
         ),
         const SizedBox(height: 5),
         Text(
           bmiResult.decimalPart,
-          style: textTheme.headline5!.copyWith(
+          style: textTheme.headlineSmall!.copyWith(
             color: theme.primaryColor,
             fontSize: 28,
           ),
@@ -129,7 +129,7 @@ class _YourBmiText extends StatelessWidget {
 
     return Text(
       l(context).yourBmi,
-      style: textTheme.bodyText1!.copyWith(
+      style: textTheme.bodyLarge!.copyWith(
         color: Colors.black.withOpacity(.55),
         fontSize: 13,
         fontWeight: FontWeight.w900,

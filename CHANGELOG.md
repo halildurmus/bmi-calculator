@@ -1,6 +1,11 @@
+## 3.3.0
+
+- Updated minimum Dart version to `2.19.2`.
+- Bump dependencies
+
 ## 3.2.0
 
-- Updated minimum Dart version to `2.17` and Flutter version to `3.0.0`.
+- Updated minimum Dart version to `2.17.0` and Flutter version to `3.0.0`.
 
 ## 3.1.0
 
